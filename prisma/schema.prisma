@@ -30,12 +30,12 @@ model Game {
 }
 
 model Session {
-  id        Int
+  id        Int @default(autoincrement()) @id
   game      Game @relation(fields: [gameId], references: [id])
   gameId    Int
   user      User @relation(fields: [userId], references: [id])
   userId    Int
-  initDate  DateTime
-
-  @@id([gameId, userId])
+  initDate  String?
+  duration  Int
+  score     Int
 }
