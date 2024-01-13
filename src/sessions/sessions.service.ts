@@ -13,7 +13,16 @@ export class SessionsService {
   }
 
   findAll() {
-    return this.prismaService.session.findMany();
+    return this.prismaService.session.findMany({
+      include: {
+        game: true,
+      },
+      orderBy: [
+        {
+          initDate: 'desc',
+        },
+      ],
+    });
   }
 
   findOne(id: number) {

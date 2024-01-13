@@ -8,7 +8,7 @@ export class CreateSessionDto {
   userId: number;
   @Type(() => Date)
   @IsDate()
-  initDate: string;
+  initDate: Date;
   @IsNumber()
   duration: number;
   @IsNumber()
