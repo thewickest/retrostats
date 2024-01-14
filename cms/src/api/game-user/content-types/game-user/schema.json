@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_users",
+  "info": {
+    "singularName": "game-user",
+    "pluralName": "game-users",
+    "displayName": "Game User"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "nfc": {
+      "type": "string"
+    }
+  }
+}
