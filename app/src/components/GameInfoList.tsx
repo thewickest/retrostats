@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import GameInfoCard from "./GameInfoCard";
 
 export default function GameInfoList(){

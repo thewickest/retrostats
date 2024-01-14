@@ -1,3 +1,4 @@
+import React from "react";
 function toLocaleDate(date: string) {
   const nd = new Date(date);
   return nd.toLocaleDateString('es-ES');

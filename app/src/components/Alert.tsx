@@ -1,3 +1,4 @@
+import React from "react";
 import { IoIosAlert } from "react-icons/io";
 
 export default function Alert({ message }: { message: string }) {
