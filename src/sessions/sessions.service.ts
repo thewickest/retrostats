@@ -26,14 +26,10 @@ export class SessionsService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} session`;
+    return this.prismaService.session.findUnique({
+      where: {
+        id,
+      },
+    });
   }
-
-  // update(id: number, updateSessionDto: UpdateSessionDto) {
-  //   return `This action updates a #${id} session`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} session`;
-  // }
 }
