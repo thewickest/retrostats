@@ -272,7 +272,7 @@ model sessions {
   id                                              Int                        @id @default(autoincrement()) @db.UnsignedInt
   init_date                                       DateTime?                  @db.DateTime(6)
   duration                                        DateTime?                  @db.Time(3)
-  score                                           BigInt?
+  score                                           Int?
   created_at                                      DateTime?                  @db.DateTime(6)
   updated_at                                      DateTime?                  @db.DateTime(6)
   published_at                                    DateTime?                  @db.DateTime(6)
