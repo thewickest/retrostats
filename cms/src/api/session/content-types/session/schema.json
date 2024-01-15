@@ -4,7 +4,8 @@
   "info": {
     "singularName": "session",
     "pluralName": "sessions",
-    "displayName": "Session"
+    "displayName": "Session",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -30,7 +31,7 @@
       "type": "time"
     },
     "score": {
-      "type": "biginteger"
+      "type": "integer"
     }
   }
 }
