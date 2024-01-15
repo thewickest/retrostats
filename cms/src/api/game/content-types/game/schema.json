@@ -4,7 +4,8 @@
   "info": {
     "singularName": "game",
     "pluralName": "games",
-    "displayName": "Game"
+    "displayName": "Game",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -49,14 +50,15 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
       ],
-      "type": "media",
-      "multiple": false,
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -70,6 +72,12 @@
         }
       },
       "type": "text"
+    },
+    "sessions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::session.session",
+      "mappedBy": "game"
     }
   }
 }
