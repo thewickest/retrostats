@@ -3,10 +3,14 @@ import { CreateSessionDto } from './dto/create-session.dto';
 // import { UpdateSessionDto } from './dto/update-session.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SessionDto } from './dto/session.dto';
+import { StrapiService } from 'src/strapi/strapi.service';
 
 @Injectable()
 export class SessionsService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private strapi: StrapiService,
+  ) {}
   async create(createSessionDto: CreateSessionDto) {
     try {
       const createdSession: any = await this.prismaService.sessions.create({
@@ -36,38 +40,7 @@ export class SessionsService {
   }
 
   async findAll(): Promise<SessionDto[]> {
-    //TODO: This method is too slow. We need to change the logic
-    //Get all sessions
-    const sessions = await this.prismaService.sessions.findMany({
-      select: {
-        init_date: true,
-        score: true,
-        duration: true,
-        sessions_game_links: {
-          select: {
-            games: true,
-          },
-        },
-        sessions_game_user_links: {
-          select: {
-            game_users: true,
-          },
-        },
-      },
-      orderBy: [
-        {
-          init_date: 'desc',
-        },
-      ],
-    });
-    //map sessions to proper DTO
-    return sessions.map((s) => ({
-      initDate: s.init_date,
-      duration: s.duration,
-      score: s.score,
-      game: s.sessions_game_links[0].games,
-      user: s.sessions_game_user_links[0].game_users,
-    }));
+    return this.strapi.sessions.findAll().then((data) => data.data);
   }
 
   findOne(id: number) {
