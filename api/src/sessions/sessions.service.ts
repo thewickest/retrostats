@@ -13,6 +13,7 @@ export class SessionsService {
     private strapi: StrapiService,
   ) {}
   async create(createSessionDto: CreateSessionDto) {
+    //TODO: Why i didn't use strapi api?
     try {
       const createdSession: any = await this.prismaService.sessions.create({
         data: {
@@ -44,6 +45,10 @@ export class SessionsService {
     return this.strapi.sessions.findAll().then((data) => data.data);
   }
 
+  /**
+   * Finds the top score of each game inside the databse.
+   * @returns A promise containing an array of sessions
+   */
   async findLeaderBoard(): Promise<SessionDto[]> {
     //First option:
     //  select s.score, g.game_id
@@ -70,10 +75,31 @@ export class SessionsService {
     //
   }
 
-  findOne(id: number) {
-    return this.prismaService.sessions.findUnique({
-      where: {
-        id,
+  /**
+   * Return one session by given id
+   * @param id The id of the session
+   * @returns Th
+   */
+  async findOne(id: number): Promise<SessionDto> {
+    return this.strapi.sessions.findOne(id);
+  }
+
+  /**
+   * Return a promise containing the sessions within that games' slug
+   * @param slug Slug of the game
+   * @returns The sessions of that game
+   */
+  async findByGame(slug: string): Promise<SessionDto[]> {
+    return this.strapi.sessions.findAll({
+      params: {
+        filters: {
+          game: {
+            slug: {
+              $eq: slug,
+            },
+          },
+        },
+        sort: ['score:desc'],
       },
     });
   }

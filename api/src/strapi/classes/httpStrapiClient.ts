@@ -8,14 +8,30 @@ export abstract class HttpStrapiClient {
   protected pluralName: string;
   protected singularName: string;
 
-  async findAll() {
+  async findAll(config?: any) {
     const { data } = await firstValueFrom(
-      this.httpService.get(`${process.env.STRAPI_URL}${this.pluralName}`).pipe(
-        catchError((error: AxiosError) => {
-          console.log(error.response.data);
-          throw 'An error happened!';
-        }),
-      ),
+      this.httpService
+        .get(`${process.env.STRAPI_URL}${this.pluralName}`, config)
+        .pipe(
+          catchError((error: AxiosError) => {
+            console.log(error.response.data);
+            throw 'An error happened!';
+          }),
+        ),
+    );
+    return data;
+  }
+
+  async findOne(id: number) {
+    const { data } = await firstValueFrom(
+      this.httpService
+        .get(`${process.env.STRAPI_URL}${this.pluralName}/${id}`)
+        .pipe(
+          catchError((error: AxiosError) => {
+            console.log(error.response.data);
+            throw 'An error happened!';
+          }),
+        ),
     );
     return data;
   }

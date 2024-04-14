@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 import { CreateSessionDto } from './dto/create-session.dto';
-// import { UpdateSessionDto } from './dto/update-session.dto';
 
 @Controller('sessions')
 export class SessionsController {
@@ -25,5 +24,10 @@ export class SessionsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.sessionsService.findOne(+id);
+  }
+
+  @Get('/game/:slug')
+  findSessionsByGame(@Param('slug') slug: string) {
+    return this.sessionsService.findByGame(slug);
   }
 }
