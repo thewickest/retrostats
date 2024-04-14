@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "sessions",
+  "info": {
+    "singularName": "session",
+    "pluralName": "sessions",
+    "displayName": "Session",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "game": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::game.game",
+      "inversedBy": "sessions"
+    },
+    "game_user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::game-user.game-user",
+      "inversedBy": "sessions"
+    },
+    "initDate": {
+      "type": "datetime"
+    },
+    "duration": {
+      "type": "time"
+    },
+    "score": {
+      "type": "integer"
+    }
+  }
+}

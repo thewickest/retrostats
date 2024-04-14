@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "game_users",
+  "info": {
+    "singularName": "game-user",
+    "pluralName": "game-users",
+    "displayName": "Game User",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "nfc": {
+      "type": "string"
+    },
+    "sessions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::session.session",
+      "mappedBy": "game_user"
+    }
+  }
+}
