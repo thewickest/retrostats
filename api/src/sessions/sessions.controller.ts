@@ -17,6 +17,11 @@ export class SessionsController {
     return this.sessionsService.findAll();
   }
 
+  @Get('/leaderBoard')
+  findLeaderBoard() {
+    return this.sessionsService.findLeaderBoard();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.sessionsService.findOne(+id);
