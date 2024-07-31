@@ -1,6 +1,6 @@
 services:
   strapi:
-    container_name: strapi
+    container_name: strapi-retrostats
     build: ./cms
     image: strapi:4.17.0
     restart: always
@@ -20,7 +20,8 @@ services:
       - ./cms/config:/opt/app/config
       - ./cms/src:/opt/app/src
       - ./cms/package.json:/opt/package.json
-      - ./cms/yarn.lock:/opt/yarn.lock
+      # - ./node_modules:/opt/node_modules
+      # - ./cms/yarn.lock:/opt/yarn.lock
       - .env:/opt/app/.env
       - ./cms/public/uploads:/opt/app/public/uploads
     ports:
@@ -31,7 +32,7 @@ services:
       - database
 
   database:
-    container_name: database
+    container_name: database-retrostats
     image: mysql:8.2.0
     restart: unless-stopped
     env_file: .env
@@ -50,7 +51,6 @@ services:
 
 volumes:
   retrostats-database:
-    external: true
 
 networks:
   strapi:
