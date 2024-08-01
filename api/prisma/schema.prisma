@@ -223,6 +223,7 @@ model games {
   year                                                                   String?                     @db.VarChar(255)
   publisher                                                              String?                     @db.VarChar(255)
   description                                                            String?                     @db.LongText
+  slug                                                                   String?                     @unique(map: "games_slug_unique") @db.VarChar(255)
   created_at                                                             DateTime?                   @db.DateTime(6)
   updated_at                                                             DateTime?                   @db.DateTime(6)
   published_at                                                           DateTime?                   @db.DateTime(6)
@@ -271,11 +272,10 @@ model i18n_locale {
 model sessions {
   id                                              Int                        @id @default(autoincrement()) @db.UnsignedInt
   init_date                                       DateTime?                  @db.DateTime(6)
-  duration                                        DateTime?                  @db.Time(3)
+  duration                                        Int?
   score                                           Int?
   created_at                                      DateTime?                  @db.DateTime(6)
   updated_at                                      DateTime?                  @db.DateTime(6)
-  published_at                                    DateTime?                  @db.DateTime(6)
   created_by_id                                   Int?                       @db.UnsignedInt
   updated_by_id                                   Int?                       @db.UnsignedInt
   admin_users_sessions_created_by_idToadmin_users admin_users?               @relation("sessions_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "sessions_created_by_id_fk")

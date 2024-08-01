@@ -27,10 +27,10 @@
     "initDate": {
       "type": "datetime"
     },
-    "duration": {
-      "type": "time"
-    },
     "score": {
+      "type": "integer"
+    },
+    "duration": {
       "type": "integer"
     }
   }
