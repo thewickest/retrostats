@@ -10,7 +10,7 @@ export class CreateSessionDto {
   @IsDate()
   initDate: Date;
   @IsNumber()
-  duration: Date;
+  duration: number;
   @IsNumber()
   score: number;
 }

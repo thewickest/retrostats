@@ -1,0 +1,34 @@
+{
+  "name": "retrostats",
+  "version": "1.0.0",
+  "description": "Retrostats Application",
+  "main": "index.js",
+  "workspaces": [
+    "api",
+    "app",
+    "cms"
+  ],
+  "scripts": {
+    "api:env:link": "cp ./.env.example ./.env && ln -sf ../.env ./api/.env",
+    "app:env:link": "cp ./.env.example ./.env && ln -sf ../.env ./app/.env",
+    "cms:env:link": "cp ./.env.example ./.env && ln -sf ../.env ./cms/.env",
+    "dev:setup": "npm install && npm run api:env:link && npm run app:env:link && npm run cms:env:link",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewickest"
+  },
+  "keywords": [
+    "retrostats",
+    "arcade",
+    "machine",
+    "leaderboard",
+    "score",
+    "thewickest",
+    "alex",
+    "grau"
+  ],
+  "author": "Alex Grau",
+  "license": "ISC"
+}

@@ -18,8 +18,13 @@ export class SessionsService {
       const createdSession: any = await this.prismaService.sessions.create({
         data: {
           init_date: new Date(createSessionDto.initDate),
-          duration: new Date(createSessionDto.duration),
+          duration: createSessionDto.duration,
           score: createSessionDto.score,
+          created_at: new Date(),
+          updated_at: new Date(),
+          //TODO change this
+          created_by_id: 1,
+          updated_by_id: 1,
         },
       });
       await this.prismaService.sessions_game_user_links.create({
