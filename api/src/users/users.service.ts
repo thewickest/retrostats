@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 export type User = {
   username: string;
@@ -7,16 +8,16 @@ export type User = {
 
 @Injectable()
 export class UsersService {
-  //TODO
-  private readonly users = [
-    {
-      id: 1,
-      username: 'test',
-      password: 'test',
-    },
-  ];
+  constructor(private prismaService: PrismaService) {}
 
-  async findOne(username: string): Promise<User | undefined> {
-    return this.users.find((user) => user.username === username);
+  async findOne(username: string) {
+    const res = this.prismaService.api_users.findFirst({
+      where: {
+        user: {
+          equals: username,
+        },
+      },
+    });
+    return res;
   }
 }
