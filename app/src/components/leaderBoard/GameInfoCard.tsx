@@ -8,7 +8,7 @@ function toLocaleDate(date: string) {
 
 export default function GameInfoCard({info}: any) {
   return (
-    <div className="w-[300px] rounded-md border-2 border-black font-bold transition-all duration-300 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none bg-main shadow-dark" >
+    <div className="w-[300px] h-fit pb-4 rounded-base border-2 border-black font-bold transition-all duration-300 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none bg-main shadow-dark" >
       <div className="border-b-2 border-black p-1">
         <h2 className="text-lg">{info.attributes.game.data.attributes.name}</h2>
       </div>
