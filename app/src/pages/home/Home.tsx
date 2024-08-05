@@ -1,16 +1,12 @@
 import React from "react";
-import Tabs from '../../components/Tabs';
-import GameInfoList from '../../components/GameInfoList';
+import SideNav from "../../components/sidenav/SideNav";
+import LeaderBoard from "../../components/leaderBoard/LeaderBoard";
 
 function Home() {
   return (
-    <div className='grid w-full place-content-center'>
-      <Tabs 
-        tabsArray={['Home']}
-        activeTab={'home'}
-        setActiveTab={()=> console.log('hi')}
-      />
-      <GameInfoList />
+    <div className='flex w-full bg-bg text-text border-border'>
+      <SideNav/>
+      <LeaderBoard/>
     </div>
     )
 }

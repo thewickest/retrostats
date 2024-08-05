@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import GameInfoCard from "./GameInfoCard";
 
+
 export default function GameInfoList(){
   const [items, setItems] = useState([]);
 
@@ -11,7 +12,7 @@ export default function GameInfoList(){
   }, [])
 
   return (
-    <div className="grid place-content-center space-y-4 border-2 border-black bg-white p-5 font-bold">
+    <div className="grid justify-center space-y-4 border-x-2 border-b-2 border-black bg-white p-5 font-bold">
         {
           items && items.map((info: any)=> (
             <GameInfoCard info={info}/>
