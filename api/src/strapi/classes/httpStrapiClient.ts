@@ -14,7 +14,7 @@ export abstract class HttpStrapiClient {
         .get(`${process.env.STRAPI_URL}${this.pluralName}`, config)
         .pipe(
           catchError((error: AxiosError) => {
-            console.log(error.response.data);
+            console.log(error);
             throw 'An error happened!';
           }),
         ),

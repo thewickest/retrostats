@@ -22,9 +22,6 @@ export class SessionsService {
           score: createSessionDto.score,
           created_at: new Date(),
           updated_at: new Date(),
-          //TODO change this
-          created_by_id: 1,
-          updated_by_id: 1,
         },
       });
       await this.prismaService.sessions_game_user_links.create({
@@ -47,7 +44,7 @@ export class SessionsService {
   }
 
   async findAll(): Promise<SessionDto[]> {
-    return this.strapi.sessions.findAll().then((data) => data.data);
+    return this.strapi.sessions.findAll().then((data) => data?.data);
   }
 
   /**
@@ -86,7 +83,7 @@ export class SessionsService {
    * @returns Th
    */
   async findOne(id: number): Promise<SessionDto> {
-    return this.strapi.sessions.findOne(id);
+    return this.strapi.sessions.findOne(id).then((data) => data?.data);
   }
 
   /**

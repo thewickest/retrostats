@@ -1,16 +1,16 @@
-import React from "react";
-import Tabs from '../../components/Tabs';
-import GameInfoList from '../../components/GameInfoList';
+import React, { useState } from "react";
+import SideNav from "../../components/sideNav/SideNav";
+import LeaderBoard from "../../components/leaderBoard/LeaderBoard";
+import { useLocation } from "react-router-dom";
 
 function Home() {
+  const location = useLocation();
+  const { pathname: route } = location;
+  // const [ route, useRoute ] = useState('/sessions');
   return (
-    <div className='grid w-full place-content-center'>
-      <Tabs 
-        tabsArray={['Home']}
-        activeTab={'home'}
-        setActiveTab={()=> console.log('hi')}
-      />
-      <GameInfoList />
+    <div className='flex w-full bg-bg text-text border-border'>
+      <SideNav />
+      <LeaderBoard route={route}/>
     </div>
     )
 }

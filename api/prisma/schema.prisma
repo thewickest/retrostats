@@ -83,6 +83,8 @@ model admin_users {
   admin_users_admin_users_updated_by_idToadmin_users                                             admin_users?                        @relation("admin_users_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "admin_users_updated_by_id_fk")
   other_admin_users_admin_users_updated_by_idToadmin_users                                       admin_users[]                       @relation("admin_users_updated_by_idToadmin_users")
   admin_users_roles_links                                                                        admin_users_roles_links[]
+  api_users_api_users_created_by_idToadmin_users                                                 api_users[]                         @relation("api_users_created_by_idToadmin_users")
+  api_users_api_users_updated_by_idToadmin_users                                                 api_users[]                         @relation("api_users_updated_by_idToadmin_users")
   files_files_created_by_idToadmin_users                                                         files[]                             @relation("files_created_by_idToadmin_users")
   files_files_updated_by_idToadmin_users                                                         files[]                             @relation("files_updated_by_idToadmin_users")
   game_users_game_users_created_by_idToadmin_users                                               game_users[]                        @relation("game_users_created_by_idToadmin_users")
@@ -272,8 +274,8 @@ model i18n_locale {
 model sessions {
   id                                              Int                        @id @default(autoincrement()) @db.UnsignedInt
   init_date                                       DateTime?                  @db.DateTime(6)
-  duration                                        Int?
   score                                           Int?
+  duration                                        Int?
   created_at                                      DateTime?                  @db.DateTime(6)
   updated_at                                      DateTime?                  @db.DateTime(6)
   created_by_id                                   Int?                       @db.UnsignedInt
@@ -607,4 +609,19 @@ model upload_folders_parent_links {
   @@index([folder_id], map: "upload_folders_parent_links_fk")
   @@index([inv_folder_id], map: "upload_folders_parent_links_inv_fk")
   @@index([folder_order], map: "upload_folders_parent_links_order_inv_fk")
+}
+
+model api_users {
+  id                                               Int          @id @default(autoincrement()) @db.UnsignedInt
+  user                                             String?      @db.VarChar(255)
+  password                                         String?      @db.VarChar(255)
+  created_at                                       DateTime?    @db.DateTime(6)
+  updated_at                                       DateTime?    @db.DateTime(6)
+  created_by_id                                    Int?         @db.UnsignedInt
+  updated_by_id                                    Int?         @db.UnsignedInt
+  admin_users_api_users_created_by_idToadmin_users admin_users? @relation("api_users_created_by_idToadmin_users", fields: [created_by_id], references: [id], onUpdate: NoAction, map: "api_users_created_by_id_fk")
+  admin_users_api_users_updated_by_idToadmin_users admin_users? @relation("api_users_updated_by_idToadmin_users", fields: [updated_by_id], references: [id], onUpdate: NoAction, map: "api_users_updated_by_id_fk")
+
+  @@index([created_by_id], map: "api_users_created_by_id_fk")
+  @@index([updated_by_id], map: "api_users_updated_by_id_fk")
 }

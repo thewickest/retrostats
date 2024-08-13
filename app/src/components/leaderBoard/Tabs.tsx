@@ -1,12 +1,15 @@
+import { ClassValue } from "clsx";
+import { cn } from "../../lib/utils"; 
 import React from "react";
 
 type Props = {
+  className?: ClassValue
   tabsArray: string[]
   activeTab: string
   setActiveTab: React.Dispatch<React.SetStateAction<string>>
 }
 
-export default function Tabs({ tabsArray, activeTab, setActiveTab }: Props) {
+export default function Tabs({ className, tabsArray, activeTab, setActiveTab }: Props) {
   return (
     <div
       style={{
@@ -15,17 +18,15 @@ export default function Tabs({ tabsArray, activeTab, setActiveTab }: Props) {
           .map((tab: any) => '1fr')
           .join(' '),
       }}
-      className="grid w-[500px] rounded-md"
+      className={cn('grid rounded-base text-sm sm:text-base', className)}
     >
       {tabsArray.map((tab, index) => {
+        const bg = activeTab === tab ? 'bg-mainAccent' : 'bg-main'
         return (
           <button
             key={index}
             onClick={() => setActiveTab(tab)}
-            style={{
-              backgroundColor: activeTab === tab ? '#a36ec4' : '#bc95d4',
-            }}
-            className="cursor-pointer border-2 border-black px-6 py-3 text-center font-bold transition-colors first:rounded-ss-md last:rounded-se-md"
+            className={`cursor-pointer text-text border-2 border-border py-2 text-center font-bold transition-colors first:rounded-ss-base last:rounded-se-base ${bg}`}
           >
             {tab}
           </button>
