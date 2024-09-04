@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import SideNav from "../../components/sideNav/SideNav";
-import LeaderBoard from "../../components/leaderBoard/LeaderBoard";
-import { useLocation } from "react-router-dom";
+import Title from "../../base/title/Title";
+import MarkdownBody from "../../base/markdownbody/MarkdownBody";
 
 function Home() {
-  const location = useLocation();
-  const { pathname: route } = location;
-  // const [ route, useRoute ] = useState('/sessions');
   const [ page, setPage ]: any = useState(null)
   useEffect(()=>{
     fetch('http://localhost:1337/api/home')
@@ -15,12 +11,8 @@ function Home() {
   }, [])
   return ( page &&
     <div>
-      {/* <SideNav /> */}
-      {/* <LeaderBoard route={route}/> */}
-      <h1>{page.attributes?.title}</h1>
-      <body>
-        {page.attributes?.body}
-      </body>
+      <Title title={page.attributes?.title}/>
+      <MarkdownBody body={page.attributes?.body}/>
     </div>
     )
 }
