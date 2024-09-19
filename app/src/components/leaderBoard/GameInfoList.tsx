@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import GameInfoCard from "./GameInfoCard";
 
 
-export default function GameInfoList({route}:{route:string}){
+export default function GameInfoList({ route }: { route: string}){
   const [items, setItems] = useState([]);
 
   useEffect(()=>{
-    fetch(`http://localhost:3001${route}`)
+    fetch(`${process.env.REACT_APP_API_URL}${route}`)
       .then(res => res.json())
       .then(data =>  setItems(data))
       .catch( e => setItems([]))

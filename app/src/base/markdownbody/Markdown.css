@@ -1,0 +1,46 @@
+/* styles.css */
+
+.markdown h2 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 1rem 0;
+}
+
+.markdown h3 {
+  font-size: 1.25rem;
+  color: #34495e;
+  margin: 0.75rem 0;
+}
+
+.markdown h4 {
+  font-size: 1.125rem;
+  color: #7f8c8d;
+  margin: 0.5rem 0;
+}
+
+.markdown h5 {
+  font-size: 1rem;
+  color: #95a5a6;
+  margin: 0.25rem 0;
+}
+
+.markdown h6 {
+  font-size: 0.875rem;
+  color: #bdc3c7;
+  margin: 0.25rem 0;
+}
+
+.markdown code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f4f4f4;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.markdown blockquote {
+  font-style: italic;
+  color: #7f8c8d;
+  border-left: 4px solid #2c3e50;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}

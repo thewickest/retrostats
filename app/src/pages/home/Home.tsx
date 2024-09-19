@@ -1,16 +1,28 @@
-import React, { useState } from "react";
-import SideNav from "../../components/sideNav/SideNav";
-import LeaderBoard from "../../components/leaderBoard/LeaderBoard";
-import { useLocation } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import Title from "../../base/title/Title";
+import MarkdownBody from "../../base/markdownbody/MarkdownBody";
+import Button from "../../base/button/Button";
+import { Link } from "react-router-dom";
 
-function Home() {
-  const location = useLocation();
-  const { pathname: route } = location;
-  // const [ route, useRoute ] = useState('/sessions');
-  return (
-    <div className='flex w-full bg-bg text-text border-border'>
-      <SideNav />
-      <LeaderBoard route={route}/>
+// const route = '/api/home'a
+
+function Home({ route }: { route: string}) {
+  const [ page, setPage ]: any = useState(null)
+  useEffect(()=>{
+    // TODO: Change this with the API route
+    fetch(`${process.env.REACT_APP_API_URL}${route}`)
+      .then(res => res.json())
+      .then(data => setPage(data.data))
+  }, [route])
+  return ( page &&
+    <div className="flex flex-col items-center w-10/12 sm:w-8/12 md:w-10/12 lg:w-8/12 xl:w-5/12 p-4 mt-4 mx-auto">
+      <Title title={page.attributes?.title}/>
+      <MarkdownBody body={page.attributes?.body}/>
+      <div className="xl:justify-end lg:justify-center md:justify-center sm:justify-center mt-6 flex w-full items-center">
+        <Link to="/leaderboard">
+          <Button onClick={()=> {}}></Button>
+        </Link>
+      </div>
     </div>
     )
 }
