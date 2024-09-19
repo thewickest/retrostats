@@ -10,7 +10,7 @@ function Home({ route }: { route: string}) {
   const [ page, setPage ]: any = useState(null)
   useEffect(()=>{
     // TODO: Change this with the API route
-    fetch(`${process.env.REACT_APP_STRAPI_URL}/api/${route}`)
+    fetch(`${process.env.REACT_APP_API_URL}${route}`)
       .then(res => res.json())
       .then(data => setPage(data.data))
   }, [route])

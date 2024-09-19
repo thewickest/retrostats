@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PlayersModule } from './players/players.module';
 import { GamesModule } from './games/games.module';
+import { PagesModule } from './pages/pages.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { GamesModule } from './games/games.module';
     UsersModule,
     PlayersModule,
     GamesModule,
+    PagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
