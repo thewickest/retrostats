@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Title from "../../base/title/Title";
 import MarkdownBody from "../../base/markdownbody/MarkdownBody";
 import Button from "../../base/button/Button";
+import { Link } from "react-router-dom";
 
 function Home() {
   const [ page, setPage ]: any = useState(null)
@@ -15,7 +16,9 @@ function Home() {
       <Title title={page.attributes?.title}/>
       <MarkdownBody body={page.attributes?.body}/>
       <div className="xl:justify-end lg:justify-center md:justify-center sm:justify-center mt-6 flex w-full items-center">
-        <Button onClick={() => console.log('Implement this!') }></Button>
+        <Link to="/leaderboard">
+          <Button onClick={()=> {}}></Button>
+        </Link>
       </div>
     </div>
     )
