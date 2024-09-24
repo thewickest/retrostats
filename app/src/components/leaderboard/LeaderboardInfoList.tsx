@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import GameInfoCard from "./GameInfoCard";
 import { Link } from "react-router-dom";
+import LeaderboardInfoCard from "./LeaderboardInfoCard";
 
 
-export default function GameInfoList({ route }: { route: string}){
+export default function LeaderboardInfoList({ route }: { route: string}){
   const [items, setItems] = useState([]);
 
   useEffect(()=>{
@@ -23,7 +23,7 @@ export default function GameInfoList({ route }: { route: string}){
             return (
               <div>
                 <Link to={`${info.attributes.game.data.attributes.slug}`}>
-                  <GameInfoCard info={info}/>
+                  <LeaderboardInfoCard info={info}/>
                 </Link>
               </div>
             )

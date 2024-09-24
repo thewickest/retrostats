@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "../Icon";
 
-export default function GameInfoCard({info}: any) {
+export default function LeaderboardInfoCard({info}: any) {
   const { game, score} = info.attributes;
   const { name, image } = game.data?.attributes ? game.data.attributes : { name: 'noname', image: null}
   const { url } = image?.data?.attributes ? image.data.attributes : ''
