@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import GameInfoCard from "./GameInfoCard";
+import { Link } from "react-router-dom";
 
 
 export default function GameInfoList({ route }: { route: string}){
@@ -15,11 +16,19 @@ export default function GameInfoList({ route }: { route: string}){
   return (
     <>
       { items?.length > 0 &&
-        <div className="grid justify-center space-y-4 border-2 border-black rounded-base bg-white p-5 font-bold">
+        <div className="space-y-3 border-2 border-black rounded-base bg-white p-5 font-bold">
         {
-          items.map((info: any)=> (
-            <GameInfoCard info={info}/>
-          ))
+          items.map((info: any)=> {
+            console.log('info', info);
+            return (
+              <div>
+                <Link to={`${info.attributes.game.data.attributes.slug}`}>
+                  <GameInfoCard info={info}/>
+                </Link>
+              </div>
+            )
+          }
+          )
         }
       </div>
       }
