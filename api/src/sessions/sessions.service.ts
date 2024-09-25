@@ -92,7 +92,7 @@ export class SessionsService {
    * @returns The sessions of that game
    */
   async findByGame(slug: string): Promise<SessionDto[]> {
-    return this.strapi.sessions.findAll({
+    const res = await this.strapi.sessions.findAll({
       params: {
         filters: {
           game: {
@@ -104,5 +104,6 @@ export class SessionsService {
         sort: ['score:desc'],
       },
     });
+    return res?.data;
   }
 }
