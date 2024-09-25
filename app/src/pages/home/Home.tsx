@@ -14,7 +14,7 @@ function Home({ route }: { route: string}) {
       <MarkdownBody body={page.attributes?.body}/>
       <div className="xl:justify-end lg:justify-center md:justify-center sm:justify-center mt-6 flex w-full items-center">
         <Link to="/leaderboard">
-          <Button onClick={()=> {}}></Button>
+          <Button onClick={()=> {}}>Check the leaderBoard!</Button>
         </Link>
       </div>
     </div>

@@ -13,6 +13,7 @@ function App() {
           <Route path="" element={<Home route='pages/home'/>} />
           <Route path="leaderboard" element={<Leaderboard route='sessions/leaderBoard'/>} />
           <Route path="leaderBoard/:slug" element={<Scoreboard />} />
+          <Route path="leaderBoard/:slug/:page" element={<Scoreboard />} />
         </Route>
       </Routes>
     </BrowserRouter>

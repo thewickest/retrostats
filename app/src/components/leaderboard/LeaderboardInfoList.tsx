@@ -13,9 +13,10 @@ export default function LeaderboardInfoList({ route }: { route: string}){
         <div className="space-y-3 border-2 border-black rounded-base bg-white p-5 font-bold">
         {
           items.map((info: any)=> {
+            const slug = info.attributes.game.data.attributes.slug;
             return (
-              <div>
-                <Link to={`${info.attributes.game.data.attributes.slug}`}>
+              <div key={slug}>
+                <Link to={`${slug}`}>
                   <LeaderboardInfoCard info={info}/>
                 </Link>
               </div>
