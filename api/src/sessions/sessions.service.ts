@@ -91,8 +91,11 @@ export class SessionsService {
    * @param slug Slug of the game
    * @returns The sessions of that game
    */
-  async findByGame(slug: string): Promise<SessionDto[]> {
-    const res = await this.strapi.sessions.findAll({
+  async findByGame(
+    slug: string,
+    pagination: { page: number; pageSize: number },
+  ): Promise<SessionDto[]> {
+    return await this.strapi.sessions.findAll({
       params: {
         filters: {
           game: {
@@ -101,9 +104,9 @@ export class SessionsService {
             },
           },
         },
+        pagination,
         sort: ['score:desc'],
       },
     });
-    return res?.data;
   }
 }
