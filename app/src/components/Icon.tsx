@@ -1,9 +1,9 @@
-export default function Icon({ imageUrl, size }: { imageUrl: string, size?: string  }) {
+export default function Icon({ imageUrl }: { imageUrl: string }) {
   const src = imageUrl ? `${process.env.REACT_APP_IMAGE_DOMAIN}${imageUrl}` : ''
   return (
     <>
       <img
-        className={`h-12 w-12 rounded-full border-2 border-black bg-cover bg-center`}
+        className={`h-8 w-8 sm:h-12 sm:w-12 rounded-full border-2 border-black bg-cover bg-center`}
         src={src} alt="" />
     </>
   )
