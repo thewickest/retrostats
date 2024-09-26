@@ -14,7 +14,7 @@ export default function LeaderboardInfoCard({info}: any) {
         <div className="flex-none">
           <Icon imageUrl={url}/>
         </div>
-        <div className="max-sm:flex-auto w-56 place-content-center sm:border-r-2 sm:border-black">
+        <div className="max-sm:flex-auto w-56 place-content-center sm:border-r-2 sm:border-black text-text">
           <p>{name}</p>
         </div>
       </div>

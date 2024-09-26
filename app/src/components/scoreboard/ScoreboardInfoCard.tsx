@@ -1,5 +1,4 @@
-import React from "react";
-import Icon from "../Icon";
+import React, { useEffect, useRef, useState } from "react";
 
 function formatDuration(seconds: number) {
   // Calculate hours, minutes, and remaining seconds
@@ -42,27 +41,62 @@ function formatDate(date: Date) {
 
 
 export default function ScoreboardInfoCard({info, position}: {info: any, position: number}) {
-  const { game, score, initDate, duration} = info.attributes;
+  const { score, initDate, duration} = info.attributes;
   const date: Date = new Date(initDate)
-  const { name, image } = game.data?.attributes ? game.data.attributes : { name: 'noname', image: null}
-  const { url } = image?.data?.attributes ? image.data.attributes : ''
+
+  const [showContent, setShowContent] = useState(false)
+  const [contentHeight, setContentHeight] = useState('0px')
+  const contentRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setContentHeight(`${contentRef.current.scrollHeight}px`)
+    }
+  }, [showContent])
+
 
   return (
-    <div className="grid grid-cols-10 gap-2 justify-items-strech items-center p-2 px-2 rounded-base border-2 border-black font-bold transition-all duration-300 hover:translate-x-[3px] hover:translate-y-[3px] hover:shadow-none bg-main shadow-dark">
-      <div className="col-span-1 text-start">
-        <p>#{position}</p>
-      </div>
-      <div className="col-span-2 text-center">
-          <p>algrlo</p>
-      </div>
-      <div className="col-span-2 text-center">
-        <p>{duration ? formatDuration(duration) : 0}</p>
-      </div>
-      <div className="col-span-2 text-center">
-        <p>{initDate ? formatDate(date) : '-'}</p>
-      </div>
-      <div className="col-span-3 text-center">
-          <p>{score}</p>
+    <div data-state={showContent ? 'open' : 'closed'}
+    className="rounded-base overflow-x-hidden border-2 border-border
+    dark:border-darkBorder shadow-light dark:shadow-dark">
+      <button
+        className="w-full items-center text-text transition-[border-radius]
+            border-b-0 group-data-[state=open]:border-b-2 border-b-border dark:border-b-darkBorder
+            bg-main p-2"
+        onClick={() => {
+          setShowContent(!showContent)
+        }}
+      >
+        <div className="grid grid-cols-10 gap-2 justify-items-strech items-center">
+          <div className="col-span-1 text-start">
+            <p>#{position}</p>
+          </div>
+          <div className="col-span-2 max-sm:col-span-4 text-center">
+              algrlo
+          </div>
+          <div className="col-span-2 text-center max-sm:hidden">
+            <p>{duration ? formatDuration(duration) : 0}</p>
+          </div>
+          <div className="col-span-2 text-center max-sm:hidden">
+            <p>{initDate ? formatDate(date) : '-'}</p>
+          </div>
+          <div className="col-span-3 max-sm:col-span-5 text-center">
+              <p>{score}</p>
+          </div>
+        </div>
+      </button>
+      <div
+        ref={contentRef}
+        style={{ height: showContent ? `${contentHeight}` : '0' }}
+        className="grid grid-cols-10 gap-2 justify-items-strech items-center overflow-hidden rounded-b-base bg-main font-base
+        transition-[height] ease-in-out font-heading sm:hidden"
+      >
+        <div className="col-span-5 text-center p-2">
+          <p>{duration ? formatDuration(duration) : 0}</p>
+        </div>
+        <div className="col-span-5 text-center p-2">
+          <p>{initDate ? formatDate(date) : '-'}</p>
+        </div>
       </div>
     </div>
   )

@@ -29,8 +29,8 @@ function Scoreboard() {
 
   return (
     <>
-      <div className="grid w-full justify-center">
-        <div className="grid w-[800px] p-4">
+      <div className="flex w-full justify-center">
+        <div className="flex-initial w-[800px] p-4">
           <ScoreboardInfoList items={items?.data} pagination={pagination}/>
           <div className="flex justify-center">
             { items?.meta?.pagination?.pageCount > 1 &&
