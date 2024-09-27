@@ -15,6 +15,6 @@ export class PagesService {
         }),
       ),
     );
-    return data;
+    return data?.data;
   }
 }

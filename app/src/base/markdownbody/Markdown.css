@@ -44,3 +44,49 @@
   padding-left: 1rem;
   margin: 1rem 0;
 }
+
+/* Dark mode*/
+.dark .markdown h2 {
+  font-size: 1.5rem;
+  color: #bdc3c7;
+  margin: 1rem 0;
+}
+
+.dark .markdown h3 {
+  font-size: 1.25rem;
+  color: #849797;
+  margin: 0.75rem 0;
+}
+
+.dark .markdown h4 {
+  font-size: 1.125rem;
+  color: #4d6162;
+  margin: 0.5rem 0;
+}
+
+.dark .markdown h5 {
+  font-size: 1rem;
+  color: #374e4f;
+  margin: 0.25rem 0;
+}
+
+.dark .markdown h6 {
+  font-size: 0.875rem;
+  color: #2b4547;
+  margin: 0.25rem 0;
+}
+
+.dark .markdown code {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #1b1b1b;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+}
+
+.dark .markdown blockquote {
+  font-style: italic;
+  color: #7f8c8d;
+  border-left: 4px solid #2c3e50;
+  padding-left: 1rem;
+  margin: 1rem 0;
+}

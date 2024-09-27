@@ -1,37 +1,38 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'selector',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
     extend: {
       colors: {
-        main: '#A3E636',
-        mainAccent: '#88cc19', // not needed for shadcn components
+        main: '#c4a1ff',
+        mainAccent: '#9e66ff', // not needed for shadcn components
         overlay: 'rgba(0,0,0,0.8)', // background color overlay for alert dialogs, modals, etc.
   
         // light mode
-        bg: '#E0E7F1',
+        bg: '#daf5f0',
         text: '#000',
         border: '#000',
   
         // dark mode
-        darkBg: '#111903',
+        darkBg: '#0f3730',
         darkText: '#eeefe9',
         darkBorder: '#000',
         secondaryBlack: '#1b1b1b', // opposite of plain white, not used pitch black because borders and box-shadows are that color 
       },
       borderRadius: {
-        base: '5px'
+        base: '8px'
       },
       boxShadow: {
-        light: '4px 4px 0px 0px #000',
-        dark: '4px 4px 0px 0px #000',
+        light: '2px 4px 0px 0px #000',
+        dark: '2px 4px 0px 0px #000',
       },
       translate: {
-        boxShadowX: '4px',
+        boxShadowX: '2px',
         boxShadowY: '4px',
-        reverseBoxShadowX: '-4px',
+        reverseBoxShadowX: '-2px',
         reverseBoxShadowY: '-4px',
       },
       fontWeight: {

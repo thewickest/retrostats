@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Param, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  UseGuards,
+  Query,
+} from '@nestjs/common';
 import { SessionsService } from './sessions.service';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
@@ -29,7 +37,8 @@ export class SessionsController {
   }
 
   @Get('/game/:slug')
-  findSessionsByGame(@Param('slug') slug: string) {
-    return this.sessionsService.findByGame(slug);
+  findSessionsByGame(@Param('slug') slug: string, @Query() query: any) {
+    const { pagination } = query;
+    return this.sessionsService.findByGame(slug, pagination);
   }
 }
