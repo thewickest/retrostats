@@ -1,6 +1,7 @@
 'use client'
 
-import { ChevronDown } from 'lucide-react'
+// import { ChevronDown } from 'lucide-react'
+import { LuChevronDown } from "react-icons/lu";
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
@@ -36,7 +37,7 @@ export default function Dropdown({
       >
         <div className="mx-auto flex items-center">
           {text}
-          <ChevronDown
+          <LuChevronDown
             className={
               'h-4 w-4 sm:h-6 sm:w-6 transition-transform group-data-[state=open]:rotate-180 group-data-[state=closed]:rotate-0 ease-in-out dark:text-darkText'
             }
