@@ -7,7 +7,7 @@ export default function ScoreboardInfoList({ items, pagination }: { items: any, 
   return (
     <>
       { items?.length > 0 &&
-        <div className="space-y-3 border-2 border-black rounded-base bg-white p-5 font-bold">
+        <div className="space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5 font-base">
         {
           items.map((info: any, index: any)=> {
             const position = index+1+(page-1)*pageSize

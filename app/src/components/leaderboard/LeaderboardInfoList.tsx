@@ -10,7 +10,7 @@ export default function LeaderboardInfoList({ route }: { route: string}){
   return (
     <>
       { items?.length > 0 &&
-        <div className="space-y-3 border-2 border-black rounded-base bg-white p-5 font-bold">
+        <div className="space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5">
         {
           items.map((info: any)=> {
             const slug = info.attributes.game.data.attributes.slug;
