@@ -3,6 +3,10 @@ import Dropdown from "./Dropdown";
 import DarkModeButton from "../../base/button/DarkModeButton";
 
 export default function Header () {
+
+  const items = [
+    {name: 'Leaderboard', link: '/leaderboard'},
+  ]
   return (
     <>
       <nav className="left-0 top-0 z-20 mx-auto flex fixed h-[76px] w-full
@@ -11,7 +15,7 @@ export default function Header () {
         <div className="mx-auto flex w-[1300px] text-text dark:text-darkText max-w-full items-center
           justify-center md:grid md:grid-cols-3">
           <div className="md:hidden fixed top-4 left-4">
-            <Dropdown text={''} items={[{name: 'Leaderboard', link: '/leaderboard'}]}></Dropdown>
+            <Dropdown text={''} items={items}></Dropdown>
           </div>
           <div className="flex justify-center max-md:grow">
             <Link className="text-4xl font-heading max-md:text-xl" to="/">RETROSTATS</Link>
