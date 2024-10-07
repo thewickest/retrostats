@@ -1,8 +1,8 @@
 services:
   app:
-    container_name: app-retrostats
+    container_name: retrostats-app
     build: ./app
-    image: app:latest
+    image: retrostats-app:latest
     env_file: .env
     ports:
       - "3000:3000"
@@ -11,15 +11,16 @@ services:
     depends_on:
       - api
   api:
-    container_name: api-retrostats
+    container_name: retrostats-api
     build: ./api
-    image: api:latest
+    image: retrostats-api:latest
     restart: always
     env_file: .env
     volumes:
       - ./api/prisma:/app/prisma
       - ./api/src:/app/src
       - ./api/package.json:/app/package.json
+      - ./api/package-lock.json:/app/package-lock.json
       - ./api/tsconfig.build.json:/app/tsconfig.build.json
       - ./api/tsconfig.json:/app/tsconfig.json
       - .env:/app/.env
@@ -30,14 +31,14 @@ services:
     depends_on:
       - strapi
   strapi:
-    container_name: strapi-retrostats
+    container_name: retrostats-cms
     build: ./cms
-    image: strapi:4.17.0
+    image: retrostats-cms:latest
     restart: always
     env_file: .env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: ${HOST}
+      DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
