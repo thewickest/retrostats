@@ -1,6 +1,7 @@
 import { Link, Outlet } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import DarkModeButton from "../../base/button/DarkModeButton";
+import { LuCrown } from "react-icons/lu";
 
 export default function Header () {
 
@@ -21,7 +22,11 @@ export default function Header () {
             <Link className="text-4xl font-heading max-md:text-xl" to="/">RETROSTATS</Link>
           </div>
           <div className="flex items-center justify-center max-md:hidden">
-            <Link className="text-xl font-base" to="/leaderboard">Leaderboard</Link>
+            <Link className="flex content-center items-center justify-center text-xl font-base" to="/leaderboard">
+              <LuCrown/>
+              &nbsp;
+              <p>Leaderboard</p>
+            </Link>
           </div>
           <div className="md:flex md:justify-end max-md:fixed max-md:top-4 max-md:right-4">
             <DarkModeButton/>
