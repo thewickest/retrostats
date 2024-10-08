@@ -7,13 +7,14 @@ export class PlayersService {
   constructor(private prismaService: PrismaService) {}
   async findOne(nfc: string) {
     try {
-      return this.prismaService.game_users.findFirst({
+      const users = await this.prismaService.game_users.findFirst({
         where: {
           nfc: {
             equals: nfc,
           },
         },
       });
+      return users ? users : {}
     } catch (error) {
       if (error instanceof PrismaClientKnownRequestError) {
         throw new HttpException(
