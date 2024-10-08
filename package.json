@@ -26,6 +26,10 @@
     "alex",
     "grau"
   ],
+  "engines" : { 
+    "npm" : ">=10.0.0 <11.0.0",
+    "node" : ">=18.0.0 <20.0.0"
+  },
   "author": "Alex Grau",
   "license": "ISC"
 }
