@@ -1,0 +1,36 @@
+# fly.toml app configuration file generated for retrostats-cms on 2024-10-02T13:37:21+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'retrostats-cms'
+primary_region = 'mad'
+
+[build]
+
+[http_service]
+  internal_port = 1337
+  force_https = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[env]
+  DATABASE_CLIENT = 'mysql'
+  DATABASE_HOST = 'retrostats-database.internal'
+  DATABASE_NAME = 'retrostats'
+  DATABASE_USERNAME = 'retrostats'
+  DATABASE_PASSWORD = 'retrostats'
+  DATABASE_PORT = 3306
+  DATABASE_URL = 'mysql://retrostats:retrostats@retrostats-database.internal:3306/retrostats'
+  ADMIN_JWT_SECRET = 'tobemodified'
+  API_TOKEN_SALT = 'tobemofidied'
+  APP_KEYS = 'tobemodified'
+  JWT_SECRET = 'tobemodified'
+  SECRET = 'tobemofied'
+  TRANSFER_TOKEN_SALT = 'tobemofied'
+
+[[vm]]
+  memory = '2gb'
+  cpu_kind = 'shared'
+  cpus = 1
