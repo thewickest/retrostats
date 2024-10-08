@@ -1,0 +1,25 @@
+# fly.toml app configuration file generated for retrostats on 2024-10-02T14:38:13+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'retrostats'
+primary_region = 'mad'
+
+[build]
+
+[env]
+  REACT_APP_API_URL = 'https://retrostats-api.fly.dev/'
+  REACT_APP_IMAGE_DOMAIN = 'https://retrostats-cms.fly.dev'
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[vm]]
+  memory = '2gb'
+  cpu_kind = 'shared'
+  cpus = 1
