@@ -46,20 +46,17 @@ export default function Dropdown({
       </button>
       <div
         role="listbox"
-        className="absolute left-0 w-[160px] group-data-[state=open]:top-12
+        className="absolute left-0 w-[160px] group-data-[state=open]:top-12 sm:group-data-[state=open]:top-16
         group-data-[state=open]:opacity-100 group-data-[state=closed]:invisible
         group-data-[state=closed]:top-[50px] group-data-[state=closed]:opacity-0
-        group-data-[state=open]:visible rounded-base border-2 border-border
-        dark:border-darkBorder text-center font-base shadow-light dark:shadow-dark
-        transition-all"
+        group-data-[state=open]:visible text-center font-base transition-all"
       >
         {items.map((item, index) => {
           return (
             <Link key={index} to={item.link} 
-              className="block w-full border-b-2 border-border dark:border-darkBorder
-              bg-main hover:bg-mainAccent hover:text-text
-              px-7 py-3 no-underline first:rounded-t-base
-              last:rounded-b-base">
+              className="block w-full border-2 border-border dark:border-darkBorder
+              bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
+              shadow-light dark:shadow-dark duration-300">
               {item.name}
             </Link>
           )
