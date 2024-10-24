@@ -1,12 +1,16 @@
 import { Link, Outlet } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import DarkModeButton from "../../base/button/DarkModeButton";
-import { LuCrown } from "react-icons/lu";
+import { LuCrown, LuGithub } from "react-icons/lu";
+import GithubButton from "../../base/button/GithubButton";
 
 export default function Header () {
 
   const items = [
     {name: 'Leaderboard', link: '/leaderboard'},
+  ]
+  const extraItems = [
+    {name: 'Github', link:'https://github.com/thewickest/retrostats', icon: <LuGithub/> }
   ]
   return (
     <>
@@ -16,7 +20,7 @@ export default function Header () {
         <div className="mx-auto flex w-[1300px] text-text dark:text-darkText max-w-full items-center
           justify-center md:grid md:grid-cols-3">
           <div className="md:hidden fixed top-4 left-4">
-            <Dropdown text={''} items={items}></Dropdown>
+            <Dropdown text={''} items={items} extraItems={extraItems}></Dropdown>
           </div>
           <div className="flex justify-center max-md:grow">
             <Link className="text-4xl font-heading max-md:text-xl" to="/">RETROSTATS</Link>
@@ -28,8 +32,11 @@ export default function Header () {
               <p>Leaderboard</p>
             </Link>
           </div>
-          <div className="md:flex md:justify-end max-md:fixed max-md:top-4 max-md:right-4">
-            <DarkModeButton/>
+          <div className="md:flex md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-4">
+              <DarkModeButton/>
+              <div className="max-md:hidden">
+                <GithubButton/>
+              </div>
           </div>
         </div>
       </nav>
