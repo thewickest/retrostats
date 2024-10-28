@@ -1,6 +1,6 @@
 // import Home from './pages/home/Home';
 
-import Header from "./components/header/Header";
+import Header from "src/components/header/Header";
 
 // import { BrowserRouter, Route, Routes } from 'react-router-dom';
 // import Leaderboard from './components/leaderboard/Leaderboard';

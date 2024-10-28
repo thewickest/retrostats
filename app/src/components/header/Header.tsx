@@ -2,9 +2,9 @@
 
 import Link from 'next/link'
 import Dropdown from "./Dropdown";
-import DarkModeButton from "../../base/button/DarkModeButton";
+import DarkModeButton from "src/base/button/DarkModeButton";
 import { LuCrown, LuGithub } from "react-icons/lu";
-import GithubButton from "../../base/button/GithubButton";
+import GithubButton from "src/base/button/GithubButton";
 
 export default function Header () {
 
@@ -42,9 +42,6 @@ export default function Header () {
           </div>
         </div>
       </nav>
-      {/* <div className="mt-[76px] dark:bg-darkBg bg-bg">
-        <Outlet/>
-      </div> */}
     </>
   )
 }

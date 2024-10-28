@@ -1,17 +1,17 @@
 import { Link, useParams } from "react-router-dom"
 import ScoreboardInfoList from "./ScoreboardInfoList";
-import Button from "../../base/button/Button";
+import Button from "src/base/button/Button";
 import { useState } from "react";
 import { default as useSessions } from "../../lib/hooks/useApi";
 import { Pagination } from "./types";
 
-function Scoreboard() {
+export default async function Scoreboard() {
 
   const { slug, page } = useParams();
   const [ pageState, setPageState] = useState(Number(page) || 1)
   const pagination: Pagination = { page: pageState ? pageState: 1, pageSize: 10}
   const route: string = `sessions/game/${slug}`
-  const [ items ] = useSessions(route, pagination)
+  const [ items ] = await useSessions(route, pagination)
 
   const getPageButtons = (pageCount: number) => {
     const pages = []
@@ -42,5 +42,3 @@ function Scoreboard() {
     </>
   )
 }
-
-export default Scoreboard;
