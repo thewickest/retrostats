@@ -1,4 +1,5 @@
-import { Link, Outlet } from "react-router-dom";
+// import { Link, Outlet } from "react-router-dom";
+import Link from 'next/link'
 import Dropdown from "./Dropdown";
 import DarkModeButton from "../../base/button/DarkModeButton";
 import { LuCrown, LuGithub } from "react-icons/lu";
@@ -23,10 +24,10 @@ export default function Header () {
             <Dropdown text={''} items={items} extraItems={extraItems}></Dropdown>
           </div>
           <div className="flex justify-center max-md:grow">
-            <Link className="text-4xl font-heading max-md:text-xl" to="/">RETROSTATS</Link>
+            <Link className="text-4xl font-heading max-md:text-xl" href="/">RETROSTATS</Link>
           </div>
           <div className="flex items-center justify-center max-md:hidden">
-            <Link className="flex content-center items-center justify-center text-xl font-base" to="/leaderboard">
+            <Link className="flex content-center items-center justify-center text-xl font-base" href="/leaderboard">
               <LuCrown/>
               &nbsp;
               <p>Leaderboard</p>
@@ -40,9 +41,9 @@ export default function Header () {
           </div>
         </div>
       </nav>
-      <div className="mt-[76px] dark:bg-darkBg bg-bg">
+      {/* <div className="mt-[76px] dark:bg-darkBg bg-bg">
         <Outlet/>
-      </div>
+      </div> */}
     </>
   )
 }

@@ -1,10 +1,9 @@
 'use client'
 
-// import { ChevronDown } from 'lucide-react'
-import { LuChevronDown, LuGithub } from "react-icons/lu";
+import { LuChevronDown } from "react-icons/lu";
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 
 export default function Dropdown({
   items,
@@ -55,7 +54,7 @@ export default function Dropdown({
       >
         {items.map((item, index) => {
           return (
-            <Link key={`${index}-items`} to={item.link} 
+            <Link key={`${index}-items`} href={item.link} 
               className="block w-full border-2 border-border dark:border-darkBorder
               bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
               shadow-light dark:shadow-dark duration-300">
@@ -66,8 +65,7 @@ export default function Dropdown({
         <hr className="mb-1 h-1 border-t-0 border-black rounded-sm bg-black" />
         {extraItems && extraItems.map((item, index) => {
           return (
-            <>
-              <Link key={`${index}-extra`} to={item.link} target="_blank"
+            <Link key={`${index}-extra`} href={item.link} target="_blank"
               className="block w-full border-2 border-border dark:border-darkBorder
               bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
               shadow-light dark:shadow-dark duration-300">
@@ -76,7 +74,6 @@ export default function Dropdown({
                   {item.name}
                 </div>
             </Link>
-            </>
           )
         })}
       </div>

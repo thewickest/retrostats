@@ -1,5 +1,4 @@
 import { LuMoon, LuSun } from "react-icons/lu";
-import Button from "./Button";
 import { useEffect, useState } from "react";
 
 export default function DarkModeButton() {
@@ -13,18 +12,6 @@ export default function DarkModeButton() {
     }
   },[isDark])
 
-  // return (
-  //   <>
-  //     <Button onClick={()=> setIsDark(!isDark)}>
-  //       {isDark &&
-  //         <div className="h-8 w-8">
-  //           {!!isDark && <FiMoon></FiMoon> }
-  //           {!isDark && <FiSun></FiSun>}
-  //         </div>
-  //       }
-  //     </Button>
-  //   </>
-  // )
   return (
     <button
       onClick={()=> setIsDark(!isDark)}
