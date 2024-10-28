@@ -55,7 +55,7 @@ export default function Dropdown({
       >
         {items.map((item, index) => {
           return (
-            <Link key={index} to={item.link} 
+            <Link key={`${index}-items`} to={item.link} 
               className="block w-full border-2 border-border dark:border-darkBorder
               bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
               shadow-light dark:shadow-dark duration-300">
@@ -67,7 +67,7 @@ export default function Dropdown({
         {extraItems && extraItems.map((item, index) => {
           return (
             <>
-              <Link key={index} to={item.link} target="_blank"
+              <Link key={`${index}-extra`} to={item.link} target="_blank"
               className="block w-full border-2 border-border dark:border-darkBorder
               bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
               shadow-light dark:shadow-dark duration-300">

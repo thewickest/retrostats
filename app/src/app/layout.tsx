@@ -1,18 +1,23 @@
+import { Metadata } from "next"
+import '../index.css'
+
+export const metadata: Metadata = {
+    title: 'RetroStats',
+    description: 'Leaderboard website for Arcade Games',
+    // themeColor: '#000000'
+}
+
 export default function RootLayout({
     children,
   }: {
     children: React.ReactNode
   }) {
     return (
-      <html lang="en">
-        <head>
-          <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-          <title>React App</title>
-          <meta name="description" content="Web site created..." />
-        </head>
+        <html lang="en">
         <body>
           <div id="root">{children}</div>
         </body>
       </html>
+      
     )
   }
