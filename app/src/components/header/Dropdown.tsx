@@ -1,5 +1,3 @@
-'use client'
-
 import { LuChevronDown } from "react-icons/lu";
 
 import { useState } from 'react'

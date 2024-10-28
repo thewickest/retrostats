@@ -6,7 +6,7 @@ export default function useApi(route: string, pagination?: any) {
   const paginationString = (page && pageSize) ? `?pagination[page]=${page}&pagination[pageSize]=${pageSize}` : '';
 
   useEffect(()=>{
-    fetch(`${process.env.REACT_APP_API_URL}${route}${paginationString}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}${route}${paginationString}`)
       .then(res => res.json())
       .then(data =>  setItems(data))
       .catch( e => setItems([]))

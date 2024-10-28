@@ -1,5 +1,5 @@
 export default function Icon({ imageUrl }: { imageUrl: string }) {
-  const src = imageUrl ? `${process.env.REACT_APP_IMAGE_DOMAIN}${imageUrl}` : ''
+  const src = imageUrl ? `${process.env.NEXT_PUBLIC_IMAGE_DOMAIN}${imageUrl}` : ''
   return (
     <>
       <img

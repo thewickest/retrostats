@@ -1,4 +1,5 @@
-// import { Link, Outlet } from "react-router-dom";
+'use client'
+
 import Link from 'next/link'
 import Dropdown from "./Dropdown";
 import DarkModeButton from "../../base/button/DarkModeButton";
