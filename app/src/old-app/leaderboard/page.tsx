@@ -1,3 +1,4 @@
+import React from 'react'
 import LeaderboardInfoList from 'src/components/leaderboard/LeaderboardInfoList';
 
 export default function Leaderboard() {

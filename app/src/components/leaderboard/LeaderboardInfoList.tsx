@@ -1,11 +1,17 @@
-import React from "react";
+'use client'
+
+import React, { useEffect, useState } from "react";
 import Link from 'next/link'
 import LeaderboardInfoCard from "./LeaderboardInfoCard";
 import useApi from "src/lib/hooks/useApi";
 
+export default async function LeaderboardInfoList() {
+  const [ items, setItems ] = useState([])
 
-export default async function LeaderboardInfoList(){
-  const [ items ] = await useApi('sessions/leaderBoard')
+  useEffect(() => {
+    const items: any = useApi('sessions/leaderBoard')
+    setItems(items);
+  },[])
 
   return (
     <>

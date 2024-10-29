@@ -1,5 +1,6 @@
 import { Metadata } from "next"
 import '../index.css'
+import Header from "src/components/header/Header"
 
 export const metadata: Metadata = {
     title: 'RetroStats',
@@ -15,7 +16,12 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body>
-          <div id="root">{children}</div>
+          <Header />
+          <div id="root">
+            <div className="mt-[76px] dark:bg-darkBg bg-bg">
+              {children}
+            </div>
+          </div>
         </body>
       </html>
       
