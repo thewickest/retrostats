@@ -1,5 +1,5 @@
 import Markdown from "react-markdown"
-import './Markdown.css';
+// import './Markdown.css';
 
 export default function MarkdownBody({ body }: { body: string}) {
   return (

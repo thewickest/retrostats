@@ -4,12 +4,8 @@ import Button from "src/base/button/Button";
 import { default as usePage }from "src/lib/hooks/useApi";
 import Link from "next/link";
 
-export async function getServerSideProps() {
-    
-}
-
-export default async function Home({page}: {page: any}) {
-  const [ page ] = await usePage('pages/home');
+export default async function Home() {
+  const page = await usePage('pages/home');
 
   return (
     <div className="flex flex-col items-center w-10/12 sm:w-8/12 md:w-10/12

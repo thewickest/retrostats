@@ -1,7 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import ScoreboardInfoList from "src/components/scoreboard/ScoreboardInfoList";
 import Button from "src/base/button/Button";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { default as useSessions } from "src/lib/hooks/useApi";
 import { Pagination } from "src/components/scoreboard/types";
 
@@ -18,27 +20,34 @@ import { Pagination } from "src/components/scoreboard/types";
 //   }
    
 
-export default async function Scoreboard(params : any) {
+export default function Scoreboard(params : any) {
 
-    console.log('params', params)
-
-    const properties = await params
-    const [ slug, page = 1] = properties.slug
-    // const [ pageState, setPageState] = useState(Number(page) || 1)
-    const pagination: Pagination = { page: Number(page), pageSize: 10}
+    // const [ slug= 'pang', page = 1] = {}
+    //TODO change this
+    const slug = 'pang'
+    const page = 1
+    const [ pageState, setPageState] = useState(Number(page) || 1)
+    // TODO change type
+    const [ items, setItems ] = useState([])
+    const pagination: Pagination = { page: Number(pageState), pageSize: 10}
     const route: string = `sessions/game/${slug}`
-    const [ items ] = await useSessions(route, pagination)
+
+    useEffect(()=>{
+        useSessions(route, pagination)
+            .then(items =>  setItems(items))
+            .catch(error =>setItems([]))
+    }, [])
 
     const getPageButtons = (pageCount: number) => {
         const pages = []
         for (let page=1; page<=pageCount; page++) {
-        pages.push(
-            <div key={page} className="p-1">
-            <Link href={`/leaderboard/${slug}/${page}`}>
-                <Button>{page}</Button>
-            </Link>
-            </div>
-        )
+            pages.push(
+                <div key={page} className="p-1">
+                <Link href={`/leaderboard/${slug}/${page}`}>
+                    <Button>{page}</Button>
+                </Link>
+                </div>
+            )
         }
         return pages;
     }
@@ -57,4 +66,5 @@ export default async function Scoreboard(params : any) {
         </div>
         </>
     )
+    return <></>
 }
