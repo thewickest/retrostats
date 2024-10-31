@@ -7,36 +7,37 @@ import { useEffect, useState } from "react";
 import { default as useSessions } from "src/lib/hooks/useApi";
 import { Pagination } from "src/components/scoreboard/types";
 
-// export async function generateStaticParams() {
-//     const sessions = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sessions`).then((res) => res.json())
-//     let games = {}
-//     games = Object.groupBy(sessions, (s: any) => {
-//         return s.attributes.game.attributes.slug
-//     })
+export interface ScoreBoard {
+    data: any
+    meta: any
+}
 
-//     return Object.keys(games).map((slug) => ({
-//       slug,
-//     }))
-//   }
-   
+export default function Scoreboard({ params } : any) {
 
-export default function Scoreboard(params : any) {
-
-    // const [ slug= 'pang', page = 1] = {}
-    //TODO change this
-    const slug = 'pang'
-    const page = 1
-    const [ pageState, setPageState] = useState(Number(page) || 1)
-    // TODO change type
-    const [ items, setItems ] = useState([])
-    const pagination: Pagination = { page: Number(pageState), pageSize: 10}
+    const [ slug, setSlug ] = useState()
+    const [ pageState, setPageState]: [Number, any] = useState(1)
+    const [ scoreBoard, setScoreBoard ]: [ScoreBoard, any] = useState({data: null, meta: null})
+    const pagination: Pagination = { page: Number(pageState) || 1, pageSize: 10}
     const route: string = `sessions/game/${slug}`
 
+    useEffect(() => {
+        const getSlug = async () => {
+            const [slug, page] = (await params)?.slug
+            setSlug(slug);
+            setPageState(page)
+        }
+        getSlug()
+    }, [params])
+
     useEffect(()=>{
-        useSessions(route, pagination)
-            .then(items =>  setItems(items))
-            .catch(error =>setItems([]))
-    }, [])
+        if(slug) {
+            useSessions(route, pagination)
+            .then(items =>  {
+                setScoreBoard(items)
+            })
+            .catch(error =>setScoreBoard(null))
+        }
+    }, [slug])
 
     const getPageButtons = (pageCount: number) => {
         const pages = []
@@ -56,15 +57,19 @@ export default function Scoreboard(params : any) {
         <>
         <div className="flex w-full justify-center">
             <div className="flex-initial w-[800px] p-4">
-            <ScoreboardInfoList items={items?.data} pagination={pagination}/>
-            <div className="flex justify-center">
-                { items?.meta?.pagination?.pageCount > 1 &&
-                getPageButtons(items?.meta?.pagination?.pageCount)
-                }
-            </div>
+            { scoreBoard?.data && (
+              <>
+                <ScoreboardInfoList items={scoreBoard?.data} pagination={pagination}/>
+                  <div className="flex justify-center">
+                        { scoreBoard?.meta?.pagination?.pageCount > 1 &&
+                        getPageButtons(scoreBoard?.meta?.pagination?.pageCount)
+                      }
+                  </div>
+              </>
+            )}
             </div>
         </div>
         </>
     )
     return <></>
-}
+} 
