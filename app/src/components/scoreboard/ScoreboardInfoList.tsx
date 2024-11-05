@@ -1,19 +1,39 @@
 'use client'
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ScoreboardInfoCard from "./ScoreboardInfoCard";
-import { Pagination } from "./types";
+import ScoreboardHeader from "./ScoreboardHeader";
+import _ from 'lodash'
+import { BoardSession } from "src/app/leaderboard/[...slug]/types";
 
-export default function ScoreboardInfoList({ items, pagination }: { items: any, pagination: Pagination }){
-  const { page, pageSize } = pagination;
+export interface Info {
+  attributes: {
+    score: number
+    initDate: Date
+    duration: number
+  }
+}
+
+export default function ScoreboardInfoList({ items }: { items: BoardSession[] }){
+  // const { page, pageSize } = pagination;
+  const [order, setOrder] = useState('name')
+  const [ dir, setDir] = useState('desc')
+  const [ listItems, setListItems ] = useState(items)
+
+  useEffect(()=>{
+    const orderedItems = _.orderBy(items,[ order], [ dir ])
+    setListItems(orderedItems)
+  }, [order, dir])
+
   return (
     <>
-      { items?.length > 0 &&
+      { listItems?.length > 0 &&
         <div className="space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5 font-base">
+          <ScoreboardHeader onClick={setOrder} dir={dir} setDir={setDir}/>
         {
-          items.map((info: any, index: any)=> {
-            const position = index+1+(page-1)*pageSize
+          listItems.map((info: BoardSession, index: number)=> {
+            // const position = index+1+(page-1)*pageSize
             return (
-              <ScoreboardInfoCard key={index} info={info} position={position}/>
+              <ScoreboardInfoCard key={index} info={info}/>
             )
           })
         }
