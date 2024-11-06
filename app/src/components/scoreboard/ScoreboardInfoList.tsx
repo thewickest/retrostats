@@ -28,7 +28,7 @@ export default function ScoreboardInfoList({ items }: { items: BoardSession[] })
     <>
       { listItems?.length > 0 &&
         <div className="space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5 font-base">
-          <ScoreboardHeader onClick={setOrder} dir={dir} setDir={setDir}/>
+          <ScoreboardHeader order={order} setOrder={setOrder} dir={dir} setDir={setDir}/>
         {
           listItems.map((info: BoardSession, index: number)=> {
             // const position = index+1+(page-1)*pageSize
