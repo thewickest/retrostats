@@ -18,6 +18,7 @@
     "lucide-react": "^0.424.0",
     "next": "^15.0.1",
     "postcss": "^8.4.47",
+    "qs": "^6.13.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
@@ -52,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/qs": "^6.9.17",
     "eslint": "^9.14.0",
     "tailwindcss": "^3.4.1"
   }

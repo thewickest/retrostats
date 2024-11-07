@@ -1,11 +1,8 @@
 import React, { useEffect } from "react";
 import { LuChevronDown } from "react-icons/lu";
 
-export default function ScoreboardHeader({ order, setOrder, dir, setDir }: {order: string, setOrder: Function, dir: string, setDir: any}) {
+export default function ScoreboardHeader({ order, setOrder, dir, setDir }: {order: string | null, setOrder: Function, dir: string, setDir: any}) {
 
-  useEffect(()=>{
-    console.log('dir', dir)
-  }, [dir])
   return (
     <div
     className="rounded-base overflow-x-hidden border-2 border-border

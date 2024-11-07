@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import ScoreboardInfoCard from "./ScoreboardInfoCard";
 import ScoreboardHeader from "./ScoreboardHeader";
 import _ from 'lodash'
-import { BoardSession } from "src/app/leaderboard/[...slug]/types";
+import { BoardSession, ScoreBoard } from "src/app/leaderboard/[...slug]/types";
+import { default as useSessions } from "src/lib/hooks/useApi";
+import { toBoardList } from "src/lib/utils";
+import { useParams } from "next/navigation";
 
 export interface Info {
   attributes: {
@@ -14,14 +17,30 @@ export interface Info {
 }
 
 export default function ScoreboardInfoList({ items }: { items: BoardSession[] }){
-  // const { page, pageSize } = pagination;
-  const [order, setOrder] = useState('name')
+  const params = useParams<{slug: string[]}>()
+  const [slug, page]= params?.slug
+  const [order, setOrder] = useState(null)
   const [ dir, setDir] = useState('desc')
-  const [ listItems, setListItems ] = useState(items)
+  const [ listItems, setListItems ]: [BoardSession[], any] = useState(items)
+  const route = `sessions/game/${slug}`
 
   useEffect(()=>{
-    const orderedItems = _.orderBy(items,[ order], [ dir ])
-    setListItems(orderedItems)
+    if(order) {
+      const params = {
+        pagination: {
+          page,
+          pageSize: 10
+        },
+        sort: [`${order}:${dir}`, dir === 'desc' ? 'id:asc': 'id:desc']
+      }
+      useSessions(route, params)
+      .then((items: ScoreBoard) => {
+        /** Map the ScoreBoard type to BoardSession type */
+        const scoreList: BoardSession[] = toBoardList(items?.data)
+        setListItems(scoreList)
+      })
+      .catch(error => setListItems([]))
+    }
   }, [order, dir])
 
   return (

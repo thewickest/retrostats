@@ -6,20 +6,25 @@ import Button from "src/base/button/Button";
 import { useEffect, useState } from "react";
 import { default as useSessions } from "src/lib/hooks/useApi";
 import { Pagination } from "src/components/scoreboard/types";
-import { BoardSession, ScoreBoard, Session } from './types';
-import _ from 'lodash'
+import { BoardSession, ScoreBoard } from './types';
+import { toBoardList } from 'src/lib/utils';
 
 export default function Scoreboard({ params } : any) {
 
     const [ slug, setSlug ] = useState()
     const [ pageState, setPageState]: [Number, any] = useState(1)
     const [ scoreBoard, setScoreBoard ]: [ScoreBoard, any] = useState({data: null, meta: null})
-    const [ scoresList, setScoresList ] = useState(null)
+    const [ scoresList, setScoresList ]: [BoardSession[] | null, any] = useState(null)
     const pagination: Pagination = { page: Number(pageState) || 1, pageSize: 10}
     const route: string = `sessions/game/${slug}`
 
     useEffect(() => {
         const getSlug = async () => {
+             /**
+              * This is called slug because of the [...slug]. 
+              * In reality, it gets all the params /:slug/:page, etc.
+              * Everything after /leaderboard/.../.../
+              * */
             const [slug, page] = (await params)?.slug
             setSlug(slug);
             setPageState(page)
@@ -29,20 +34,11 @@ export default function Scoreboard({ params } : any) {
 
     useEffect(()=>{
         if(slug) {
-            useSessions(route, pagination)
-            .then(items =>  {
+            useSessions(route, { pagination, sort: ['score:desc', 'id:asc'] })
+            .then((items: ScoreBoard) =>  {
                 setScoreBoard(items)
-                const orderItems = _.orderBy(items, ['attributes.score'], ['desc'])
-                const scoreList = orderItems[0].map((session: Session, index: number) => {
-                  const boardSession: BoardSession = {
-                    score: session?.attributes?.score || 0,
-                    name: session?.attributes?.game_user?.data?.attributes?.username || 'default',
-                    position: index+1+(pagination.page-1)*pagination.pageSize,
-                    initDate: session?.attributes?.initDate || null,
-                    duration: session?.attributes?.duration || 0,
-                  }
-                  return boardSession
-                })
+                /** Map the ScoreBoard type to BoardSession type */
+                const scoreList: BoardSession[] = toBoardList(items?.data)
                 setScoresList(scoreList)
             })
             .catch(error => { 

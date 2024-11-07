@@ -32,6 +32,7 @@ export interface Session {
         duration: number
         game: Game
         game_user: GameUser
+        position: number
     }
 }
 
