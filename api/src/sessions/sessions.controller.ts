@@ -38,7 +38,6 @@ export class SessionsController {
 
   @Get('/game/:slug')
   findSessionsByGame(@Param('slug') slug: string, @Query() query: any) {
-    const { pagination } = query;
-    return this.sessionsService.findByGame(slug, pagination);
+    return this.sessionsService.findByGame(slug, query);
   }
 }
