@@ -5,6 +5,7 @@ import Dropdown from "./Dropdown";
 import DarkModeButton from "src/base/button/DarkModeButton";
 import { LuCrown, LuGithub } from "react-icons/lu";
 import GithubButton from "src/base/button/GithubButton";
+import LoginButton from 'src/base/button/LoginButton';
 
 export default function Header () {
 
@@ -34,7 +35,8 @@ export default function Header () {
               <p>Leaderboard</p>
             </Link>
           </div>
-          <div className="md:flex md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-4">
+          <div className="md:flex items-center md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-4">
+              <LoginButton/>
               <DarkModeButton/>
               <div className="max-md:hidden">
                 <GithubButton/>
