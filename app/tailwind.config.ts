@@ -24,7 +24,7 @@ const config: Config = {
         secondaryBlack: '#212121',  // opposite of plain white, not used pitch black because borders and box-shadows are that color 
       },
       borderRadius: {
-        base: '8px'
+        base: '12px'
       },
       boxShadow: {
         light: '2px 4px 0px 0px #000',
