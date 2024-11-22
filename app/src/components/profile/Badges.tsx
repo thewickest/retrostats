@@ -14,7 +14,8 @@ const Badges = () => {
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
-    <div className="flex justify-items-center justify-left">
+    <div className="flex justify-center">
+      {/** This is a test*/}
       <div className='flex items-center justify-center w-[45px] h-[45px]'>
         <img src="/badge.png" alt="" />
       </div>

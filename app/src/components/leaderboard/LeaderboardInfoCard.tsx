@@ -8,7 +8,8 @@ export default function LeaderboardInfoCard({info}: any) {
     <div className="flex flex-wrap text-center p-2
       bg-main border-2 border-black rounded-base
       shadow-dark transition-all duration-300 hover:shadow-none hover:translate-x-[3px] hover:translate-y-[3px]">
-      <div className="flex max-sm:border-b-2 max-sm:border-black max-sm:w-full max-sm:pb-1">
+        {/**TODO: Chang the responsivenesss of this */}
+      <div className="flex max-sm:flex-auto max-sm:border-b-2 max-sm:border-black max-sm:w-full max-sm:pb-1">
         <div className="flex-none">
           <Icon imageUrl={url}/>
         </div>
