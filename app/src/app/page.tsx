@@ -11,7 +11,7 @@ export default async function Home() {
     <>
       <Title title={page.attributes?.title}/>
       <MarkdownBody body={page.attributes?.body}/>
-      <div className="flex xl:justify-end max-xl:justify-center mt-6 w-full items-center">
+      <div className="flex xl:justify-end max-xl:justify-center mt-6 w-full items-center mb-6">
         <Link href="/leaderboard">
           <Button>Check the leaderBoard!</Button>
         </Link>
