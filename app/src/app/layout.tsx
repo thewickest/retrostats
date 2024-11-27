@@ -18,8 +18,10 @@ export default function RootLayout({
         <body>
           <Header />
           <div id="root">
-            <div className="mt-[76px] dark:bg-darkBg bg-bg">
-              {children}
+            <div className="mt-[76px] dark:bg-darkBg bg-bg text-text dark:text-darkText">
+              <div className="flex flex-col items-center w-12/12 sm:w-10/12 xl:w-6/12 p-4 mt-4 mx-auto text-text dark:text-darkText">
+                {children}
+              </div>
             </div>
           </div>
         </body>
