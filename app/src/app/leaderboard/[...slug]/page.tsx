@@ -65,7 +65,7 @@ export default function Scoreboard({ params } : any) {
     return (
         <>
         <div className="flex w-full justify-center">
-            <div className="flex-initial w-[800px] p-4">
+            <div className="flex-initial w-full p-4">
             { scoresList && (
               <>
                 <ScoreboardInfoList items={scoresList}/>

@@ -5,7 +5,7 @@ export default function Leaderboard() {
   return (
     <>
       <div className="flex w-full justify-center">
-        <div className="flex-initial w-[800px] p-4">
+        <div className="flex-initial w-full p-4">
             <LeaderboardInfoList />
           </div>
       </div>
