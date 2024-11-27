@@ -16,7 +16,7 @@ export default function ProfileInfo() {
               <div className="font-base text-left">1574738 hours played</div>
             </div>
           </div>
-          <div className="flex flex-auto justify-center">
+          <div className="flex flex-auto justify-end">
             <Badges />
           </div>
         </div>
