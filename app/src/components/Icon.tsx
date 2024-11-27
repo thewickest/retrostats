@@ -3,7 +3,7 @@ export default function Icon({ imageUrl }: { imageUrl: string }) {
   return (
     <>
       <img
-        className={`h-8 w-8 sm:h-12 sm:w-12 rounded-full border-2 border-black bg-cover bg-center`}
+        className={`h-8 w-8 md:h-12 md:w-12 rounded-full border-2 border-black bg-cover bg-center`}
         src={src} alt="" />
     </>
   )

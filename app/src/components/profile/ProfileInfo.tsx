@@ -12,7 +12,7 @@ export default function ProfileInfo() {
             <div className="flex items-center text-2xl font-heading text-left w-full">algrlo<Level level={8} percentage={80}></Level></div>
             <div className="font-base w-full">1574738 hours played</div>
           </div>
-          <div className="flex w-40">
+          <div className="flex w-1/3">
             <Badges />
           </div>
         </div>
