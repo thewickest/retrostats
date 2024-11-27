@@ -16,13 +16,13 @@ const Badges = () => {
   return (
     <div className="flex justify-center">
       {/** This is a test*/}
-      <div className='flex items-center justify-center w-[45px] h-[45px]'>
+      <div className='flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'>
         <img src="/badge.png" alt="" />
       </div>
-      <div className='flex items-center justify-center w-[45px] h-[45px]'>
+      <div className='flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'>
         <img src="/badge.png" alt="" />
       </div>
-      <button className="flex items-center justify-center w-[45px] h-[45px]
+      <button className="flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'
       rounded-full text-3xl hover:bg-bg dark:hover:bg-darkBg transition">
         <LuBadgePlus /></button>
     </div>
