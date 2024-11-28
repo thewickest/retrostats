@@ -35,7 +35,7 @@ export default function Header () {
               <p>Leaderboard</p>
             </Link>
           </div>
-          <div className="md:flex items-center md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-4">
+          <div className="flex items-center md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-2">
               <LoginButton/>
               <DarkModeButton/>
               <div className="max-md:hidden">
