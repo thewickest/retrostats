@@ -1,8 +1,9 @@
 import Icon from "../Icon";
 
 export default function LeaderboardInfoCard({info}: any) {
-  const { game, score} = info.attributes;
+  const { game, score, game_user } = info.attributes;
   const { name, image } = game.data?.attributes ? game.data.attributes : { name: 'noname', image: null}
+  const { username } = game_user.data?.attributes ? game_user.data.attributes : { username: 'default' }
   const { url } = image?.data?.attributes ? image.data.attributes : ''
   return (
     <div className="flex max-md:flex-wrap text-center p-2
@@ -18,7 +19,7 @@ export default function LeaderboardInfoCard({info}: any) {
       </div>
       <div className="flex flex-auto w-2/3 max-md:w-full justify-around md:justify-between max-md:pt-1 md:p-2 text-text space-x-2 p-2">
         <div className="place-content-center">
-          <p>algddddrlo</p>
+          <p>{username}</p>
         </div>
         <div className="place-content-center">
           <p>{score}</p>
