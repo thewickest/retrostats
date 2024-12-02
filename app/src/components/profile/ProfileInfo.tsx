@@ -9,7 +9,7 @@ export default function ProfileInfo() {
         <div className="flex flex-wrap items-center">
           <div className="flex flex-auto">
             <div className="flex-none">
-              <ProfilePicture imageUrl='/profile.png' />
+              <ProfilePicture imageUrl='/profile.PNG' />
             </div>
             <div className="flex flex-col flex-auto justify-center px-2">
               <div className="flex items-center text-2xl font-heading text-left">algrlo<Level level={8} percentage={80}></Level></div>
