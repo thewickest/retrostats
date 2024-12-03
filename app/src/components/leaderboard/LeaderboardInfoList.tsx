@@ -1,14 +1,13 @@
-import React, { Suspense } from "react";
+import React from "react";
 import Link from 'next/link'
 import LeaderboardInfoCard from "./LeaderboardInfoCard";
 import useApi from "src/lib/hooks/useApi";
-import Loading from "./loading";
 
 export default async function LeaderboardInfoList() {
   const items: any = await useApi('sessions/leaderBoard')
 
   return (
-    <Suspense fallback={<Loading />}>
+    <>
       { items && items?.length > 0 &&
         <div className="space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5">
         {
@@ -26,6 +25,6 @@ export default async function LeaderboardInfoList() {
         }
         </div>
       }
-    </Suspense>
+    </>
   )
 }

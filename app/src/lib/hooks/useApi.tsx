@@ -12,6 +12,8 @@ export interface StrapiParams {
 export default async function useApi(route: string, params?: StrapiParams) {
   const query = qs.stringify(params)
 
+  await new Promise(res => setTimeout(res, 2000))
+
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${route}?${query}`)
   return await res.json()
 }

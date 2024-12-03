@@ -8,6 +8,7 @@ import { default as useSessions } from "src/lib/hooks/useApi";
 import { Pagination } from "src/components/scoreboard/types";
 import { BoardSession, ScoreBoard } from './types';
 import { toBoardList } from 'src/lib/utils';
+import ScoreBoardLoading from 'src/components/scoreboard/ScoreBoardLoading';
 
 export default function Scoreboard({ params } : any) {
 
@@ -76,9 +77,13 @@ export default function Scoreboard({ params } : any) {
                 </div>
               </>
             )}
+            { !scoresList && (
+              <>
+                <ScoreBoardLoading />
+              </>
+            )}
             </div>
         </div>
         </>
     )
-    return <></>
 } 
