@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
   darkMode: 'selector',
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
@@ -7,23 +8,23 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        main: '#c4a1ff',
+        main: '#a388ee',
         mainAccent: '#9e66ff', // not needed for shadcn components
         overlay: 'rgba(0,0,0,0.8)', // background color overlay for alert dialogs, modals, etc.
-  
-        // light mode
-        bg: '#daf5f0',
+
+      // light mode
+        bg: '#e3dff2',
         text: '#000',
         border: '#000',
   
         // dark mode
-        darkBg: '#0f3730',
+        darkBg: '#272733',
         darkText: '#eeefe9',
         darkBorder: '#000',
-        secondaryBlack: '#1b1b1b', // opposite of plain white, not used pitch black because borders and box-shadows are that color 
+        secondaryBlack: '#212121',  // opposite of plain white, not used pitch black because borders and box-shadows are that color 
       },
       borderRadius: {
-        base: '8px'
+        base: '12px'
       },
       boxShadow: {
         light: '2px 4px 0px 0px #000',
@@ -43,4 +44,6 @@ module.exports = {
   },
   plugins: [],
 }
+
+export default config;
 

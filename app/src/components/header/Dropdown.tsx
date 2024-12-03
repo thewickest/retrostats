@@ -1,16 +1,15 @@
-'use client'
-
-// import { ChevronDown } from 'lucide-react'
 import { LuChevronDown } from "react-icons/lu";
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom';
+import Link from 'next/link'
 
 export default function Dropdown({
   items,
+  extraItems,
   text,
 }: {
   items: { name: string; link: string }[]
+  extraItems: { name: string; link: string, icon: any }[]
   text: string
 }) {
   const [isActiveDropdown, setIsActiveDropdown] = useState(false)
@@ -53,11 +52,25 @@ export default function Dropdown({
       >
         {items.map((item, index) => {
           return (
-            <Link key={index} to={item.link} 
+            <Link key={`${index}-items`} href={item.link} 
               className="block w-full border-2 border-border dark:border-darkBorder
               bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
               shadow-light dark:shadow-dark duration-300">
               {item.name}
+            </Link>
+          )
+        })}
+        <hr className="mb-1 h-1 border-t-0 border-black rounded-sm bg-black" />
+        {extraItems && extraItems.map((item, index) => {
+          return (
+            <Link key={`${index}-extra`} href={item.link} target="_blank"
+              className="block w-full border-2 border-border dark:border-darkBorder
+              bg-main hover:bg-mainAccent px-7 py-3 no-underline rounded-base mb-2 
+              shadow-light dark:shadow-dark duration-300">
+                <div className="flex justify-center items-center">
+                  {item.icon}
+                  {item.name}
+                </div>
             </Link>
           )
         })}

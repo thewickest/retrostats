@@ -9,8 +9,8 @@ primary_region = 'mad'
 [build]
 
 [env]
-  REACT_APP_API_URL = 'https://retrostats-api.fly.dev/'
-  REACT_APP_IMAGE_DOMAIN = 'https://retrostats-cms.fly.dev'
+  NEXT_PUBLIC_API_URL = 'https://retrostats-api.fly.dev/'
+  NEXT_PUBLIC_IMAGE_DOMAIN = 'https://retrostats-cms.fly.dev'
 
 [http_service]
   internal_port = 3000

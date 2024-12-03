@@ -6,6 +6,27 @@ import { SessionDto } from './dto/session.dto';
 import { StrapiService } from 'src/strapi/strapi.service';
 import { groupBy, maxBy } from 'lodash';
 
+export interface StrapiResponse {
+  data: SessionDto[]
+  meta: {
+    pagination: {
+      page: number,
+      pageSize: number,
+      total: number,
+      pageCount: number
+    }
+  }
+}
+export interface StrapiParams {
+  sort?: string | Array<string>
+  pagination?: any
+  filters?: Record<string, unknown>
+  publicationState?: "live" | "preview"
+  locale?: string
+  fields?: Array<string>
+  populate?: string | Array<string> | Record<string, unknown>
+}
+
 @Injectable()
 export class SessionsService {
   constructor(
@@ -93,20 +114,49 @@ export class SessionsService {
    */
   async findByGame(
     slug: string,
-    pagination: { page: number; pageSize: number },
-  ): Promise<SessionDto[]> {
-    return await this.strapi.sessions.findAll({
-      params: {
-        filters: {
-          game: {
-            slug: {
-              $eq: slug,
-            },
-          },
+    query: any,
+  ): Promise<StrapiResponse> {
+
+    const filters = {
+      game: {
+        slug: {
+          $eq: slug,
         },
-        pagination,
-        sort: ['score:desc'],
       },
+    }
+
+    /**Order by Score to get first the position */
+    const sessionsOrdered = await this.strapi.sessions.findAll({
+      params: {
+        filters,
+        pagination: {
+          page: 1,
+          pageSize: 100
+        },
+        sort: ['score:desc','id:asc'],
+        fields: ['id']
+      }
     });
+
+    /**Get current query */
+    const sessions = await this.strapi.sessions.findAll({
+      params: {
+        filters,
+        ...query,
+      }
+    });
+
+    /**Map the position from the ordered items to the current query */
+    const data = sessions?.data.map(item => {
+      const position = sessionsOrdered.data.findIndex( session => session.id === item.id )
+      return {
+        id: item.id,
+        attributes: {
+          ...item.attributes,
+          position: position + 1
+        }
+      }
+    })
+    return { data, meta: sessions.meta }
   }
 }

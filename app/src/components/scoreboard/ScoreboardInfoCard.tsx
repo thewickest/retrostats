@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { BoardSession } from "src/app/leaderboard/[...slug]/types";
 
 function formatDuration(seconds: number) {
   // Calculate hours, minutes, and remaining seconds
@@ -40,8 +41,8 @@ function formatDate(date: Date) {
 }
 
 
-export default function ScoreboardInfoCard({info, position}: {info: any, position: number}) {
-  const { score, initDate, duration} = info.attributes;
+export default function ScoreboardInfoCard({info}: {info: BoardSession}) {
+  const { score, initDate, duration, position, name} = info;
   const date: Date = new Date(initDate)
 
   const [showContent, setShowContent] = useState(false)
@@ -65,14 +66,14 @@ export default function ScoreboardInfoCard({info, position}: {info: any, positio
             bg-main p-2"
         onClick={() => {
           setShowContent(!showContent)
-        }}
-      >
+        }}>
         <div className="grid grid-cols-10 gap-2 justify-items-strech items-center">
           <div className="col-span-1 text-start">
             <p>#{position}</p>
           </div>
+          {/**TODO Change the username */}
           <div className="col-span-2 max-sm:col-span-4 text-center">
-              algrlo
+              {name}
           </div>
           <div className="col-span-2 text-center max-sm:hidden">
             <p>{duration ? formatDuration(duration) : 0}</p>

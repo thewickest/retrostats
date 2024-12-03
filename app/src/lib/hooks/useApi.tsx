@@ -1,16 +1,17 @@
-import { useEffect, useState } from "react";
+import qs from 'qs'
 
-export default function useApi(route: string, pagination?: any) {
-  const [ items, setItems ]: any = useState([]);
-  const { page, pageSize } = pagination || {};
-  const paginationString = (page && pageSize) ? `?pagination[page]=${page}&pagination[pageSize]=${pageSize}` : '';
+export interface StrapiParams {
+  populate?: any
+  fields?: any
+  locale?: string
+  status?: string
+  sort?: any
+  pagination?: any
+}
 
-  useEffect(()=>{
-    fetch(`${process.env.REACT_APP_API_URL}${route}${paginationString}`)
-      .then(res => res.json())
-      .then(data =>  setItems(data))
-      .catch( e => setItems([]))
-  }, [route, paginationString])
+export default async function useApi(route: string, params?: StrapiParams) {
+  const query = qs.stringify(params)
 
-  return [items, setItems]
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${route}?${query}`)
+  return await res.json()
 }

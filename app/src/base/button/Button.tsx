@@ -2,7 +2,7 @@
 
 type Props = {
   children: any,
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export default function Button({ children, onClick }: Props) {
