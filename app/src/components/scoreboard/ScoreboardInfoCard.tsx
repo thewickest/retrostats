@@ -66,8 +66,7 @@ export default function ScoreboardInfoCard({info}: {info: BoardSession}) {
             bg-main p-2"
         onClick={() => {
           setShowContent(!showContent)
-        }}
-      >
+        }}>
         <div className="grid grid-cols-10 gap-2 justify-items-strech items-center">
           <div className="col-span-1 text-start">
             <p>#{position}</p>
