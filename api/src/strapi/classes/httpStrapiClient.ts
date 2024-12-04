@@ -1,38 +1,29 @@
-import { HttpService } from '@nestjs/axios';
 import { AxiosError } from 'axios';
-import { catchError, firstValueFrom } from 'rxjs';
+import Strapi, { StrapiRequestParams, StrapiResponse } from 'strapi-sdk-js';
 
 export abstract class HttpStrapiClient {
-  private httpService = new HttpService();
+  private strapiHttpService = new Strapi({
+    url: process.env.STRAPI_URL,
+  })
 
   protected pluralName: string;
   protected singularName: string;
 
-  async findAll(config?: any) {
-    const { data } = await firstValueFrom(
-      this.httpService
-        .get(`${process.env.STRAPI_URL}${this.pluralName}`, config)
-        .pipe(
-          catchError((error: AxiosError) => {
-            console.log(error);
-            throw 'An error happened!';
-          }),
-        ),
-    );
-    return data;
+  async findAll(config?: StrapiRequestParams): Promise<StrapiResponse<any>> {
+    return await this.strapiHttpService
+      .find(this.pluralName, config)
+      .catch((error: AxiosError) => {
+        console.log(error)
+        throw 'An error happened!'
+      })
   }
 
-  async findOne(id: number) {
-    const { data } = await firstValueFrom(
-      this.httpService
-        .get(`${process.env.STRAPI_URL}${this.pluralName}/${id}`)
-        .pipe(
-          catchError((error: AxiosError) => {
-            console.log(error.response.data);
-            throw 'An error happened!';
-          }),
-        ),
-    );
-    return data;
+  async findOne(id: number): Promise<StrapiResponse<any>> {
+    return await this.strapiHttpService
+      .findOne(this.pluralName, id)
+      .catch((error: AxiosError) => {
+          console.log(error.response.data);
+          throw 'An error happened!';
+        });
   }
 }
