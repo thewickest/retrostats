@@ -16,7 +16,9 @@
       "type": "string"
     },
     "email": {
-      "type": "string"
+      "type": "email",
+      "unique": true,
+      "required": true
     },
     "nfc": {
       "type": "uid"
