@@ -19,13 +19,34 @@
       "type": "string"
     },
     "nfc": {
-      "type": "string"
+      "type": "uid"
     },
     "sessions": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::session.session",
       "mappedBy": "game_user"
+    },
+    "profilePicture": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "badges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::badge.badge"
+    },
+    "featuredBadges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::badge.badge"
     }
   }
 }
