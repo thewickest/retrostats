@@ -3,12 +3,21 @@ import LeaderboardInfoList from "src/components/leaderboard/LeaderboardInfoList"
 import Loading from "src/components/leaderboard/loading";
 import Badges from "src/components/profile/Badges";
 import ProfileInfo from "src/components/profile/ProfileInfo";
+import useApi from "src/lib/hooks/useApi";
 
-export default function Profile() {
+export default async function Profile() {
+  const email = 'test@gmail.com' //TODO change this
+  const res = await useApi('players', { email: email })
+  const {username, profilePicture, badges, featuredBadges } = res?.data?.attributes || {}
+
+  const profileInfo = { username: username, level: 8, hours: 9086}
+  const profileImage = profilePicture?.data || {}
+  const profileBadges = featuredBadges?.data
+
   return (
     <>
       <div className="flex flex-initial flex-col w-full justify-center p-4 space-y-4">
-          <ProfileInfo />
+          <ProfileInfo profileInfo={profileInfo} image={profileImage} badges={profileBadges}/>
           <div className="flex items-start sm:space-x-4 max-sm:flex-wrap max-sm:space-y-4">
             <div className="grow max-sm:w-full">
               <Suspense fallback={<Loading />}>
