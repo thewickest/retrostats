@@ -39,8 +39,16 @@ export class PlayersService {
         },
         populate: {
           profilePicture: true,
-          badges: true,
-          featuredBadges: true,
+          badges: {
+            populate: {
+              image: true,
+            }
+          },
+          featuredBadges: {
+            populate: {
+              image: true,
+            }
+          },
         }
       }
       const users = await this.strapiService.players.findAll(params)
