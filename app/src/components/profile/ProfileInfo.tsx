@@ -30,7 +30,7 @@ interface StrapiImage {
   }
 }
 
-interface StrapiBadge {
+export interface StrapiBadge {
   id: number,
   attributes: {
     title: string,
@@ -42,11 +42,12 @@ interface StrapiBadge {
 }
 
 export default function ProfileInfo({
-  profileInfo, image, badges
+  profileInfo, image, badges, featuredBadges
 }:{
   profileInfo?: StrapiProfileInfo,
   image?: StrapiImage,
-  badges?: StrapiBadge[]
+  badges?: StrapiBadge[],
+  featuredBadges?: StrapiBadge[]
 }) {
   const imageUrl = image?.attributes?.url || ''
   const { username, hours, level } = profileInfo || {}
@@ -64,7 +65,7 @@ export default function ProfileInfo({
             </div>
           </div>
           <div className="flex flex-auto justify-end p-2">
-            <Badges />
+            <Badges badges={[]} featuredBadges={[]}/>
           </div>
         </div>
       </div>

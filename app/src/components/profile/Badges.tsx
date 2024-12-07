@@ -1,31 +1,56 @@
-// components/ButtonContainer.js
-import React from 'react';
-import { LuBadgePlus, LuPlus } from "react-icons/lu";
+'use client'
+import React, { useState } from 'react';
+import Badge from 'src/base/icon/Badge';
+import { StrapiBadge } from './ProfileInfo';
+import { LucideCirclePlus } from 'lucide-react';
+import Modal from 'src/base/modal/Modal';
 
-const Badges = () => {
-  const percentage = 100
-  const level = ''
-  const radius = 20; // Radius of the circle
-  const strokeWidth = 5; // Width of the circle border
-  const circumference = 2 * Math.PI * radius; // Circumference of the circle
-  const color = 'text-green-500'
+const Badges = ({ badges, featuredBadges }: {badges: StrapiBadge[], featuredBadges: StrapiBadge[]}) => {
+  const [fBadges, setFBadges] = useState(featuredBadges)
+  const [ active, setActive ] = useState(false)
 
-  // Calculate the stroke dash offset based on the percentage
-  const strokeDashoffset = circumference - (percentage / 100) * circumference;
+  const handleClick = () => {
+    // open modal
+    setActive(true)
+    //
+    setFBadges([...fBadges, badges[0]])
+  }
 
   return (
-    <div className="flex justify-center">
-      {/** This is a test*/}
-      <div className='flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'>
-        <img src="/badge.png" alt="" />
-      </div>
-      <div className='flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'>
-        <img src="/badge.png" alt="" />
-      </div>
-      <button className="flex items-center justify-center w-12 h-12 max-sm:h-9 max-sm:w-9'
-      rounded-full text-3xl hover:bg-bg dark:hover:bg-darkBg transition">
-        <LuBadgePlus /></button>
+    <>
+    <div className="flex justify-center items-center border-2 border-border rounded-base space-x-2 p-2">
+      {fBadges?.map((item) => {
+        const { url: imageUrl, hash } = item?.attributes?.image?.data?.attributes || {}
+        return (
+          <button key={hash} onClick={() => {}} 
+          className='flex items-center justify-center rounded-full bg-bg shadow'>
+            <Badge imageUrl={imageUrl} />
+          </button>
+        )
+      })}
+      {fBadges && fBadges?.length < 3 &&
+        [...Array(3- fBadges?.length)].map(() => (
+          <button onClick={handleClick} className="flex items-center justify-center h-8 w-8 md:h-10 md:w-10
+          rounded-full hover:bg-bg dark:hover:bg-darkBg transition">
+              <LucideCirclePlus />
+          </button>
+        ))
+      }
     </div>
+    <Modal
+        isOpen={active}
+        onClose={() => setActive(false)}
+        title="Modal Title"
+      >
+        <p>This is the modal content!</p>
+        <button
+          className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+          onClick={() => setActive(false)}
+        >
+          Close
+        </button>
+      </Modal>
+    </>
   );
 };
 
