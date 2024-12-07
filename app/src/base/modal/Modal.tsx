@@ -1,42 +1,61 @@
-import { useEffect } from 'react';
+'use client'
 
-const Modal = ({ isOpen, onClose, title, children }: { isOpen: any, onClose: any, title: any, children: any}) => {
-  // Close modal on 'Escape' key press
+import { X } from 'lucide-react'
+import ReactDom from 'react-dom'
+
+import React, { useEffect, useState } from 'react'
+import Button from '../button/Button'
+
+type Props = {
+  active: boolean
+  setActive: React.Dispatch<React.SetStateAction<boolean>>
+  children: React.ReactNode
+}
+
+export default function Modal({ active, setActive, children }: Props) {
+  const [isVisible, setIsVisible] = useState(false)
+
+  const closeModal = () => {
+    setIsVisible(false)
+    setTimeout(() => {
+      setActive(false)
+    }, 300)
+  }
+
   useEffect(() => {
-    const handleKeydown = (e) => {
-      if (e.key === 'Escape') {
-        onClose();
-      }
-    };
+    if (active) {
+      setIsVisible(true)
+    }
+  }, [active])
 
-    document.addEventListener('keydown', handleKeydown);
-    return () => {
-      document.removeEventListener('keydown', handleKeydown);
-    };
-  }, [onClose]);
+  if (!active) return null
 
-  if (!isOpen) return null;
-
-  return (
+  return ReactDom.createPortal(
     <div
-      className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
-      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      data-visible={isVisible ? 'true' : 'false'}
+      onClick={closeModal}
+      className="fixed text-text left-0 top-0 z-50 flex h-screen w-screen items-center justify-center data-[visible=true]:opacity-100 
+      data-[visible=true]:visible data-[visible=false]:opacity-0 data-[visible=false]:invisible transition-all duration-300 bg-overlay"
     >
       <div
-        className="bg-white rounded-lg shadow-lg w-full max-w-lg p-6 relative"
-        onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside modal
+        onClick={(e) => e.stopPropagation()}
+        className="relative flex w-[300px] group-data-[visible=true]:opacity-100 group-data-[visible=true]:visible group-data-[visible=false]:opacity-0 
+        group-data-[visible=false]:invisible flex-col items-center justify-center rounded-base border-2 border-border dark:border-darkBorder bg-white 
+        dark:bg-darkBg p-10 text-text dark:text-darkText pt-12 font-base shadow-light dark:shadow-dark transition-all duration-300"
       >
-        <button
-          className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
-          onClick={onClose}
-        >
-          ✖
+        <button onClick={closeModal}>
+          <X className="absolute right-3 top-3 h-6 w-6" />
         </button>
-        {title && <h2 className="text-xl font-semibold mb-4">{title}</h2>}
-        <div>{children}</div>
+        {children}
+        <button className='mt-5 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-main px-4 py-1.5 font-base
+          shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
+          onClick={closeModal}>
+          Save
+        </button>
       </div>
-    </div>
-  );
-};
-
-export default Modal;
+    </div>,
+    document.getElementById('modal') as HTMLElement,
+  )
+}

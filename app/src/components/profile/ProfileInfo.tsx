@@ -65,7 +65,7 @@ export default function ProfileInfo({
             </div>
           </div>
           <div className="flex flex-auto justify-end p-2">
-            <Badges badges={[]} featuredBadges={[]}/>
+            <Badges badges={badges} featuredBadges={featuredBadges}/>
           </div>
         </div>
       </div>
