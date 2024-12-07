@@ -4,15 +4,15 @@ import { X } from 'lucide-react'
 import ReactDom from 'react-dom'
 
 import React, { useEffect, useState } from 'react'
-import Button from '../button/Button'
 
 type Props = {
   active: boolean
   setActive: React.Dispatch<React.SetStateAction<boolean>>
+  saveAction: any
   children: React.ReactNode
 }
 
-export default function Modal({ active, setActive, children }: Props) {
+export default function Modal({ active, setActive, saveAction, children }: Props) {
   const [isVisible, setIsVisible] = useState(false)
 
   const closeModal = () => {
@@ -20,6 +20,11 @@ export default function Modal({ active, setActive, children }: Props) {
     setTimeout(() => {
       setActive(false)
     }, 300)
+  }
+
+  const handleSaveAction = () => {
+    saveAction()
+    closeModal()
   }
 
   useEffect(() => {
@@ -51,7 +56,7 @@ export default function Modal({ active, setActive, children }: Props) {
         {children}
         <button className='mt-5 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-main px-4 py-1.5 font-base
           shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
-          onClick={closeModal}>
+          onClick={handleSaveAction}>
           Save
         </button>
       </div>

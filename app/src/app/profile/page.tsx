@@ -1,7 +1,6 @@
 import { Suspense } from "react";
 import LeaderboardInfoList from "src/components/leaderboard/LeaderboardInfoList";
 import Loading from "src/components/leaderboard/loading";
-import Badges from "src/components/profile/Badges";
 import ProfileInfo from "src/components/profile/ProfileInfo";
 import useApi from "src/lib/hooks/useApi";
 

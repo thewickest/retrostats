@@ -1,6 +1,6 @@
 import ProfilePicture from "src/base/icon/ProfilePicture";
 import Level from "./Level";
-import Badges from "./Badges";
+import FeaturedBadges from "./FeaturedBadges";
 
 interface StrapiProfileInfo {
   username: string,
@@ -65,7 +65,7 @@ export default function ProfileInfo({
             </div>
           </div>
           <div className="flex flex-auto justify-end p-2">
-            <Badges badges={badges} featuredBadges={featuredBadges}/>
+            <FeaturedBadges badges={badges} featuredBadges={featuredBadges}/>
           </div>
         </div>
       </div>
