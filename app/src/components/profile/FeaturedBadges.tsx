@@ -5,8 +5,11 @@ import { StrapiBadge } from './ProfileInfo';
 import { LucideCirclePlus } from 'lucide-react';
 import Modal from 'src/base/modal/Modal';
 import { v4 as uuid } from 'uuid';
+import { updateFeaturedBadges } from 'src/lib/hooks/useApi';
 
 const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], featuredBadges?: StrapiBadge[]}) => {
+  //TODO get the user from somehwere
+  const userId = 2
   const [featBadges, setFeatBadges] = useState(featuredBadges)
   const [isModalActive, setIsModalActive] = useState(false)
   const [selectedBadge, setSelectedBadge ]: any = useState(null)
@@ -20,13 +23,18 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
     setSelectedBadge(item)
   }
 
-  const handleSaveAction = () => {
+  const handleSaveAction = async () => {
     if(selectedBadge && featBadges) {
       const tempFeatBadges = [...featBadges]
       tempFeatBadges.push(selectedBadge)
       setFeatBadges(tempFeatBadges)
       setSelectedBadge(null)
-      //TODO save this to the server
+      const data = {
+        data: {
+          featuredBadges: tempFeatBadges.map(item=> item?.id)
+        }
+      }
+      await updateFeaturedBadges(userId, data)
     }
   }
 
