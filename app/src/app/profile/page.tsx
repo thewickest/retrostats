@@ -1,13 +1,15 @@
 import { Suspense } from "react";
 import LeaderboardInfoList from "src/components/leaderboard/LeaderboardInfoList";
 import Loading from "src/components/leaderboard/loading";
+import BadgesGrid from "src/components/profile/BadgesGrid";
 import ProfileInfo from "src/components/profile/ProfileInfo";
 import useApi from "src/lib/hooks/useApi";
 
 export default async function Profile() {
   const email = 'test@gmail.com' //TODO change this
   const res = await useApi('players', { email: email })
-  const {username, profilePicture, badges, featuredBadges } = res?.data[0]?.attributes || {}
+  const badges = await useApi('badges')
+  const {username, profilePicture, badges: profileBadges, featuredBadges } = res?.data[0]?.attributes || {}
 
   const profileInfo = { username: username, level: 8, hours: 9086}
   const profileImage = profilePicture?.data || {}
@@ -24,12 +26,8 @@ export default async function Profile() {
                 <LeaderboardInfoList />
               </Suspense>
             </div>
-            <div className="flex-initial max-sm:w-full">
-              <div className="border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5 font-base h-full">
-                {/* <Badges />
-                <Badges />
-                <Badges /> */}
-              </div>
+            <div className="flex-initial w-1/4 max-sm:w-full">
+              <BadgesGrid profileBadges={profileBadges?.data} totalBadges={totalBadges}/>
             </div>
           </div>
       </div>
