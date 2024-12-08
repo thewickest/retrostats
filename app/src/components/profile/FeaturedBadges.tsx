@@ -90,7 +90,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           <div className='flex flex-wrap border-border border-2 rounded-base'>
           {badges?.map((item, index)=>{
             return (
-              <button key={index} className='m-1 border-2 border-border rounded-full' onClick={()=> handleBadgeSelect(item)}>
+              <button key={item?.id} className={`m-1 border-2 border-border rounded-full ${item?.id == selectedBadge?.id ? 'bg-bg' : ''}`} onClick={()=> handleBadgeSelect(item)}>
                 <Badge imageUrl={item?.attributes?.image?.data?.attributes?.url}/>
               </button>
             )
