@@ -53,7 +53,7 @@ export default function Modal({ active, setActive, saveAction, deleteAction, isB
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="relative flex w-[300px] group-data-[visible=true]:opacity-100 group-data-[visible=true]:visible group-data-[visible=false]:opacity-0 
+        className="relative flex w-[400px] group-data-[visible=true]:opacity-100 group-data-[visible=true]:visible group-data-[visible=false]:opacity-0 
         group-data-[visible=false]:invisible flex-col items-center justify-center rounded-base border-2 border-border dark:border-darkBorder bg-white 
         dark:bg-darkBg p-10 text-text dark:text-darkText pt-12 font-base shadow-light dark:shadow-dark transition-all duration-300"
       >
