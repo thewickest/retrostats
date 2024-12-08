@@ -96,13 +96,19 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
         }
       </div>
       <Modal active={isModalActive} setActive={setIsModalActive} isBadgeSelected={!!selectedBadge} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
-        <div className='flex flex-col'>
+        <div className='flex flex-col space-y-4'>
           { selectedBadge && 
-            <div className='flex border-border border-2 rounded-base p-1'>
-              <p>This is the badge: {selectedBadge.id}</p>
+            <div className='flex items-center border-border border-2 rounded-base p-2'>
+              <div className='flex-none m-1 border-2 border-border rounded-full '>
+                <Badge imageUrl={selectedBadge?.attributes?.image?.data?.attributes?.url}/>
+              </div>
+              <div className="flex flex-col justify-center px-2">
+                <div className="flex items-center font-heading text-left">{selectedBadge?.attributes?.title}</div>
+                <div className="font-base text-left">{selectedBadge?.attributes?.description}</div>
+              </div>
             </div>
           }
-          <div className='flex flex-wrap border-border border-2 rounded-base'>
+          <div className='flex flex-wrap border-border border-2 rounded-base p-2'>
           {badges?.map((item, index)=>{
             return (
               <button key={item?.id} className={`m-1 border-2 border-border rounded-full 
