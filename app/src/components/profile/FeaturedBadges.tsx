@@ -6,6 +6,7 @@ import { LucideCirclePlus } from 'lucide-react';
 import Modal from 'src/base/modal/Modal';
 import { v4 as uuid } from 'uuid';
 import { updateFeaturedBadges } from 'src/lib/hooks/useApi';
+import _ from 'lodash'
 
 const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], featuredBadges?: StrapiBadge[]}) => {
   //TODO get the user from somehwere
@@ -14,7 +15,12 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
   const [isModalActive, setIsModalActive] = useState(false)
   const [selectedBadge, setSelectedBadge ]: any = useState(null)
 
-  const handleBadgeClick = () => {
+  const handleBadgeClick = (item: StrapiBadge) => {
+    setSelectedBadge(item)
+    setIsModalActive(true)
+  }
+
+  const handleBadgeAdd = () => {
     setSelectedBadge(null)
     setIsModalActive(true)
   }
@@ -37,6 +43,21 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
       await updateFeaturedBadges(userId, data)
     }
   }
+  
+  const handleDeleteAction = async () => {
+    if(selectedBadge && featBadges) {
+      let tempFeatBadges = [...featBadges]
+      _.remove(tempFeatBadges, (item) => item == selectedBadge)
+      setFeatBadges(tempFeatBadges)
+      setSelectedBadge(null)
+      const data = {
+        data: {
+          featuredBadges: tempFeatBadges.map(item=> item?.id)
+        }
+      }
+      await updateFeaturedBadges(userId, data)
+    } 
+  }
 
   return (
     <>
@@ -44,7 +65,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
         {featBadges?.map((item) => {
           const { url: imageUrl, hash } = item?.attributes?.image?.data?.attributes || {}
           return (
-            <button key={hash ? hash : uuid()} onClick={() => {}} 
+            <button key={hash ? hash : uuid()} onClick={() => handleBadgeClick(item)} 
               className='flex items-center justify-center rounded-full bg-bg shadow'>
               <Badge imageUrl={imageUrl} />
             </button>
@@ -52,18 +73,21 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
         })}
         {featBadges && featBadges?.length < 3 &&
           [...Array(3- featBadges?.length)].map(() => (
-            <button key={uuid()} onClick={handleBadgeClick} className="flex items-center justify-center h-8 w-8 md:h-10 md:w-10
+            <button key={uuid()} onClick={handleBadgeAdd} className="flex items-center justify-center h-8 w-8 md:h-10 md:w-10
               rounded-full hover:bg-bg dark:hover:bg-darkBg transition">
                 <LucideCirclePlus />
             </button>
           ))
         }
       </div>
-      <Modal active={isModalActive} setActive={setIsModalActive} saveAction={handleSaveAction}>
-        <div className='flex flex-wrap border-border border-2 rounded-base'>
-          { selectedBadge &&
-            <p>This is the badge: {selectedBadge.id}</p>
+      <Modal active={isModalActive} setActive={setIsModalActive} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
+        <div className='flex flex-col'>
+          { selectedBadge && 
+            <div className='flex border-border border-2 rounded-base p-1'>
+              <p>This is the badge: {selectedBadge.id}</p>
+            </div>
           }
+          <div className='flex flex-wrap border-border border-2 rounded-base'>
           {badges?.map((item, index)=>{
             return (
               <button key={index} className='m-1 border-2 border-border rounded-full' onClick={()=> handleBadgeSelect(item)}>
@@ -71,6 +95,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
               </button>
             )
           })}
+          </div>
         </div>
       </Modal>
     </>

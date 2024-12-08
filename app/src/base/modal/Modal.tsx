@@ -9,10 +9,11 @@ type Props = {
   active: boolean
   setActive: React.Dispatch<React.SetStateAction<boolean>>
   saveAction: any
+  deleteAction: any
   children: React.ReactNode
 }
 
-export default function Modal({ active, setActive, saveAction, children }: Props) {
+export default function Modal({ active, setActive, saveAction, deleteAction, children }: Props) {
   const [isVisible, setIsVisible] = useState(false)
 
   const closeModal = () => {
@@ -24,6 +25,11 @@ export default function Modal({ active, setActive, saveAction, children }: Props
 
   const handleSaveAction = () => {
     saveAction()
+    closeModal()
+  }
+
+  const handleDeleteAction = () => {
+    deleteAction()
     closeModal()
   }
 
@@ -54,11 +60,18 @@ export default function Modal({ active, setActive, saveAction, children }: Props
           <X className="absolute right-3 top-3 h-6 w-6" />
         </button>
         {children}
-        <button className='mt-5 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-main px-4 py-1.5 font-base
-          shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
-          onClick={handleSaveAction}>
-          Save
-        </button>
+        <div className='flex justify-around w-full place-content-center mt-5'>
+          <button className='cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-white px-4 py-1.5 font-base
+            shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
+            onClick={handleDeleteAction}>
+            Delete
+          </button>
+          <button className='cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-main px-4 py-1.5 font-base
+            shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
+            onClick={handleSaveAction}>
+            Save
+          </button>
+        </div>
       </div>
     </div>,
     document.getElementById('modal') as HTMLElement,
