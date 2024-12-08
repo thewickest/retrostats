@@ -10,10 +10,11 @@ type Props = {
   setActive: React.Dispatch<React.SetStateAction<boolean>>
   saveAction: any
   deleteAction: any
+  isBadgeSelected: boolean
   children: React.ReactNode
 }
 
-export default function Modal({ active, setActive, saveAction, deleteAction, children }: Props) {
+export default function Modal({ active, setActive, saveAction, deleteAction, isBadgeSelected, children }: Props) {
   const [isVisible, setIsVisible] = useState(false)
 
   const closeModal = () => {
@@ -66,8 +67,8 @@ export default function Modal({ active, setActive, saveAction, deleteAction, chi
             onClick={handleDeleteAction}>
             Delete
           </button>
-          <button className='cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-main px-4 py-1.5 font-base
-            shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
+          <button className={`cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder ${isBadgeSelected ? 'bg-main shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none' : 'bg-bg shadow-none'} px-4 py-1.5 font-base
+            transition-all`} disabled={!isBadgeSelected}
             onClick={handleSaveAction}>
             Save
           </button>

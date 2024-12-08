@@ -95,7 +95,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           ))
         }
       </div>
-      <Modal active={isModalActive} setActive={setIsModalActive} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
+      <Modal active={isModalActive} setActive={setIsModalActive} isBadgeSelected={!!selectedBadge} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
         <div className='flex flex-col'>
           { selectedBadge && 
             <div className='flex border-border border-2 rounded-base p-1'>
@@ -105,7 +105,8 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           <div className='flex flex-wrap border-border border-2 rounded-base'>
           {badges?.map((item, index)=>{
             return (
-              <button key={item?.id} className={`m-1 border-2 border-border rounded-full ${item?.id == selectedBadge?.id ? 'bg-bg' : ''}`} onClick={()=> handleBadgeSelect(item)}>
+              <button key={item?.id} className={`m-1 border-2 border-border rounded-full 
+                ${(item?.id == selectedBadge?.id || _.find(featBadges, (n) => n?.id == item?.id)) ? 'bg-bg shadow-none' : 'shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none transition-all'}`} onClick={()=> handleBadgeSelect(item)}>
                 <Badge imageUrl={item?.attributes?.image?.data?.attributes?.url}/>
               </button>
             )
