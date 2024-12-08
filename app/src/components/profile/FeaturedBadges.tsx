@@ -13,27 +13,41 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
   const userId = 2
   const [featBadges, setFeatBadges] = useState(featuredBadges)
   const [isModalActive, setIsModalActive] = useState(false)
+  /**The selected badge inside the modal */
   const [selectedBadge, setSelectedBadge ]: any = useState(null)
+  /**The badge from where the modal is open from. If the modal was open from a "+" sign, is null */
+  const [clickedBadge, setClickedBadge ]: any = useState(null)
 
+  /**When you click on a feat badge */
   const handleBadgeClick = (item: StrapiBadge) => {
+    setClickedBadge(item)
     setSelectedBadge(item)
     setIsModalActive(true)
   }
 
+  /** When you click on the plus sign */
   const handleBadgeAdd = () => {
+    setClickedBadge(null)
     setSelectedBadge(null)
     setIsModalActive(true)
   }
 
+  /**When you select a badge in the modal */
   const handleBadgeSelect = (item: StrapiBadge) => {
-    setSelectedBadge(item)
+    if(!_.find(featBadges, (n) => n?.id === item?.id)) {
+      setSelectedBadge(item)
+    }
   }
 
   const handleSaveAction = async () => {
     if(selectedBadge && featBadges) {
       const tempFeatBadges = [...featBadges]
+      if(clickedBadge) {
+        _.remove(tempFeatBadges, (item) => item === clickedBadge)
+      }
       tempFeatBadges.push(selectedBadge)
       setFeatBadges(tempFeatBadges)
+      setClickedBadge(null)
       setSelectedBadge(null)
       const data = {
         data: {
@@ -49,6 +63,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
       let tempFeatBadges = [...featBadges]
       _.remove(tempFeatBadges, (item) => item == selectedBadge)
       setFeatBadges(tempFeatBadges)
+      setClickedBadge(null)
       setSelectedBadge(null)
       const data = {
         data: {
