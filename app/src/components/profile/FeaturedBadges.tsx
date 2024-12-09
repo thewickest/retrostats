@@ -5,7 +5,7 @@ import { StrapiBadge } from './ProfileInfo';
 import { LucideCirclePlus } from 'lucide-react';
 import Modal from 'src/base/modal/Modal';
 import { v4 as uuid } from 'uuid';
-import { updateFeaturedBadges } from 'src/lib/hooks/useApi';
+import { updatePlayerFeaturedBadges } from 'src/lib/api/player';
 import _ from 'lodash'
 import Tooltip from 'src/base/tooltip/Tooltip';
 
@@ -55,7 +55,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           featuredBadges: tempFeatBadges.map(item=> item?.id)
         }
       }
-      await updateFeaturedBadges(userId, data)
+      await updatePlayerFeaturedBadges(userId, data)
     }
   }
   
@@ -71,7 +71,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           featuredBadges: tempFeatBadges.map(item=> item?.id)
         }
       }
-      await updateFeaturedBadges(userId, data)
+      await updatePlayerFeaturedBadges(userId, data)
     } 
   }
 
