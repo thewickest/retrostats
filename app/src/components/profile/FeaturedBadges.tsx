@@ -7,6 +7,7 @@ import Modal from 'src/base/modal/Modal';
 import { v4 as uuid } from 'uuid';
 import { updateFeaturedBadges } from 'src/lib/hooks/useApi';
 import _ from 'lodash'
+import Tooltip from 'src/base/tooltip/Tooltip';
 
 const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], featuredBadges?: StrapiBadge[]}) => {
   //TODO get the user from somehwere
@@ -76,14 +77,17 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
 
   return (
     <>
+      {/* Featured Badges */}
       <div className="flex justify-center items-center border-2 border-border rounded-base space-x-2 p-2">
         {featBadges?.map((item) => {
           const { url: imageUrl, hash } = item?.attributes?.image?.data?.attributes || {}
           return (
-            <button key={hash ? hash : uuid()} onClick={() => handleBadgeClick(item)} 
-              className='flex items-center justify-center rounded-full bg-bg shadow'>
-              <Badge imageUrl={imageUrl} />
-            </button>
+            <Tooltip content={item?.attributes?.description} position='top'>
+              <button key={hash ? hash : uuid()} onClick={() => handleBadgeClick(item)} 
+                className='flex items-center justify-center rounded-full bg-bg shadow'>
+                <Badge imageUrl={imageUrl} />
+              </button>
+            </Tooltip>
           )
         })}
         {featBadges && featBadges?.length < 3 &&
@@ -95,6 +99,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           ))
         }
       </div>
+      {/* Modal */}
       <Modal active={isModalActive} setActive={setIsModalActive} isBadgeSelected={!!selectedBadge} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
         <div className='flex flex-col space-y-4'>
           { selectedBadge && 
