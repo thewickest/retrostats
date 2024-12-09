@@ -10,6 +10,7 @@ import { UsersModule } from './users/users.module';
 import { PlayersModule } from './players/players.module';
 import { GamesModule } from './games/games.module';
 import { PagesModule } from './pages/pages.module';
+import { BadgesModule } from './badges/badges.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { PagesModule } from './pages/pages.module';
     PlayersModule,
     GamesModule,
     PagesModule,
+    BadgesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
