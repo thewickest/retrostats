@@ -1,3 +1,5 @@
+import { v4 as uuid } from 'uuid';
+
 export default function ScoreBoardLoading() {
   return (
     <>
@@ -5,7 +7,7 @@ export default function ScoreBoardLoading() {
         dark:bg-secondaryBlack p-5 font-base">
         {
           [...Array(11)].map(()=> (
-            <div className="rounded-base border-2 shadow dark:border-darkBorder h-10 place-content-center">
+            <div key={uuid()}className="rounded-base border-2 shadow dark:border-darkBorder h-10 place-content-center">
               <div className="w-full items-center text-text p-2">
                 <div className="grid grid-cols-10 gap-2 justify-items-strech items-center">
                   <div className="col-span-1 text-start">

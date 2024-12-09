@@ -1,4 +1,4 @@
-import Icon from "../Icon";
+import Icon from "../../base/icon/Icon";
 
 export default function LeaderboardInfoCard({info}: any) {
   const { game, score, game_user } = info.attributes;

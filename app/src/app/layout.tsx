@@ -17,6 +17,7 @@ export default function RootLayout({
     return (
         <html lang="en" suppressHydrationWarning>
         <body>
+          <div id="modal"></div>
           <ThemeProvider attribute="class">
             <Header />
             <div id="root">

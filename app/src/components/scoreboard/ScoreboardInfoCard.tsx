@@ -71,7 +71,6 @@ export default function ScoreboardInfoCard({info}: {info: BoardSession}) {
           <div className="col-span-1 text-start">
             <p>#{position}</p>
           </div>
-          {/**TODO Change the username */}
           <div className="col-span-2 max-sm:col-span-4 text-center">
               {name}
           </div>
