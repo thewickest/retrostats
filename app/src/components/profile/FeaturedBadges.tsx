@@ -82,9 +82,9 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
         {featBadges?.map((item) => {
           const { url: imageUrl, hash } = item?.attributes?.image?.data?.attributes || {}
           return (
-            <Tooltip content={item?.attributes?.description} position='top'>
-              <button key={hash ? hash : uuid()} onClick={() => handleBadgeClick(item)} 
-                className='flex items-center justify-center rounded-full bg-bg shadow'>
+            <Tooltip key={hash ? hash : uuid()} content={item?.attributes?.description} >
+              <button onClick={() => handleBadgeClick(item)} 
+                className='flex items-center justify-center border-border border-2 rounded-full bg-bg dark:bg-darkBg shadow'>
                 <Badge imageUrl={imageUrl} />
               </button>
             </Tooltip>
@@ -115,9 +115,10 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
           }
           <div className='flex flex-wrap border-border border-2 rounded-base p-2'>
           {badges?.map((item, index)=>{
+            const isFeatured = (item?.id == selectedBadge?.id || _.find(featBadges, (n) => n?.id == item?.id))
             return (
-              <button key={item?.id} className={`m-1 border-2 border-border rounded-full 
-                ${(item?.id == selectedBadge?.id || _.find(featBadges, (n) => n?.id == item?.id)) ? 'bg-bg shadow-none' : 'shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none transition-all'}`} onClick={()=> handleBadgeSelect(item)}>
+              <button key={item?.id} className={`m-1 border-2 border-border rounded-full
+                ${isFeatured ? 'bg-bg dark:bg-darkBg shadow-none' : 'shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none transition-all'}`} onClick={()=> handleBadgeSelect(item)}>
                 <Badge imageUrl={item?.attributes?.image?.data?.attributes?.url}/>
               </button>
             )

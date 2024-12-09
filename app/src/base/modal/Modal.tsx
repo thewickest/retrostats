@@ -55,19 +55,19 @@ export default function Modal({ active, setActive, saveAction, deleteAction, isB
         onClick={(e) => e.stopPropagation()}
         className="relative flex w-[400px] group-data-[visible=true]:opacity-100 group-data-[visible=true]:visible group-data-[visible=false]:opacity-0 
         group-data-[visible=false]:invisible flex-col items-center justify-center rounded-base border-2 border-border dark:border-darkBorder bg-white 
-        dark:bg-darkBg p-10 text-text dark:text-darkText pt-12 font-base shadow-light dark:shadow-dark transition-all duration-300"
+        dark:bg-secondaryBlack p-10 text-text dark:text-darkText pt-12 font-base shadow-light dark:shadow-dark transition-all duration-300"
       >
         <button onClick={closeModal}>
           <X className="absolute right-3 top-3 h-6 w-6" />
         </button>
         {children}
         <div className='flex justify-around w-full place-content-center mt-4 space-x-4'>
-          <button className='flex-1 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder bg-white px-4 py-1.5 font-base
+          <button className='flex-1 cursor-pointer rounded-base border-2 text-text dark:text-darkText border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack px-4 py-1.5 font-base
             shadow-light dark:shadow-dark transition-all hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none'
             onClick={handleDeleteAction}>
             Delete
           </button>
-          <button className={`flex-1 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder ${isBadgeSelected ? 'bg-main shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none' : 'bg-bg shadow-none'} px-4 py-1.5 font-base
+          <button className={`flex-1 cursor-pointer rounded-base border-2 text-text border-border dark:border-darkBorder ${isBadgeSelected ? 'bg-main shadow-light dark:shadow-dark hover:translate-x-boxShadowX hover:translate-y-boxShadowY hover:shadow-none dark:hover:shadow-none' : 'bg-bg dark:bg-darkBg dark:text-darkText shadow-none'} px-4 py-1.5 font-base
             transition-all`} disabled={!isBadgeSelected}
             onClick={handleSaveAction}>
             Save
