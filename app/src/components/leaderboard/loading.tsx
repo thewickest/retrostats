@@ -1,8 +1,10 @@
+import { v4 as uuid } from 'uuid';
+
 export default function Loading() {
   const elements = []
   for(let i=0; i<1; i++) {
     elements.push(
-      <div className="flex max-md:flex-wrap text-center p-2
+      <div key={uuid()} className="flex max-md:flex-wrap text-center p-2
       bg-white dark:bg-secondaryBlack border-2 rounded-base dark:border-darkBorder shadow">
       <div className="flex flex-auto w-1/3 max-md:w-full max-md:pb-1">
         {/* Image */}

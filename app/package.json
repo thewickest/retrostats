@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "lucide-react": "^0.424.0",
     "next": "^15.0.1",
+    "next-auth": "^5.0.0-beta.25",
     "next-themes": "^0.4.3",
     "postcss": "^8.4.47",
     "qs": "^6.13.0",
