@@ -1,3 +1,5 @@
+import { auth } from "auth";
+import { useSession } from "next-auth/react";
 import { Suspense } from "react";
 import LeaderboardInfoList from "src/components/leaderboard/LeaderboardInfoList";
 import Loading from "src/components/leaderboard/loading";
@@ -6,6 +8,10 @@ import ProfileInfo from "src/components/profile/ProfileInfo";
 import useApi from "src/lib/hooks/useApi";
 
 export default async function Profile() {
+  // const { data: session, status } = useSession()
+  // //TODO add a proper component
+  // if(!session?.user) return (<p>You are logged in</p>)
+
   const email = 'test@gmail.com' //TODO change this
   const res = await useApi('players', { email: email })
   const badges = await useApi('badges')

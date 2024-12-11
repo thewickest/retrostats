@@ -1,33 +1,23 @@
-import { signIn, signOut } from "auth"
+// import { auth } from "auth"
+import Link from "next/link"
 import Button from "src/base/button/Button"
 
 export function SignIn({
   provider
 }: { provider?: string }) {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signIn(provider)
-      }}
-    >
+    <Link href='api/auth/signin'>
       <Button>Sign In</Button>
-    </form>
+    </Link>
   )
 }
 
 export function SignOut() {
   return (
-    <form
-      action={async () => {
-        "use server"
-        await signOut()
-      }}
-      className="w-full"
-    >
+    <Link href='api/auth/signout'>
       <Button>
         Sign Out
       </Button>
-    </form>
+    </Link>
   )
 }
