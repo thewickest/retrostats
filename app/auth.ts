@@ -1,8 +1,5 @@
-// import NextAuth from "next-auth"
-// import "next-auth/jwt"
 
-// import GitHub from "next-auth/providers/github"
-// import Google from "next-auth/providers/google"
+// I will leave this just in case some day i need more configs
 
 // export const { handlers, auth, signIn, signOut } = NextAuth({
 //   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
@@ -56,7 +53,7 @@ import Github from 'next-auth/providers/github'
 
 // You'll need to import and pass this
 // to `NextAuth` in `app/api/auth/[...nextauth]/route.ts`
-export const config = {
+export const authConfig = {
   providers: [
     Github({
       clientId: process.env.NEXT_PUBLIC_AUTH_GITHUB_ID || '',
@@ -72,5 +69,5 @@ export function auth(
     | [NextApiRequest, NextApiResponse]
     | []
 ) {
-  return getServerSession(...args, config)
+  return getServerSession(...args, authConfig)
 }
