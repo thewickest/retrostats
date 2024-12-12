@@ -1,3 +1,5 @@
+'use client'
+
 import { LuMoon, LuSun } from "react-icons/lu";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -13,7 +15,7 @@ export default function DarkModeButton() {
   if (!mounted) {
     return (
       <div
-        className="flex text-text cursor-pointer items-center rounded-base 
+        className="flex text-text cursor-pointer items-center rounded-full
         border-2 border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack text-sm
         font-base shadow-light dark:shadow-dark transition-all
         h-9 w-9 sm:h-12 sm:w-12"
@@ -32,7 +34,7 @@ export default function DarkModeButton() {
   return (
     <button
       onClick={()=> setTheme(theme === 'light' ? 'dark' : 'light')}
-      className="flex text-text cursor-pointer items-center rounded-base 
+      className="flex text-text cursor-pointer items-center rounded-base
       border-2 border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack text-sm
       font-base shadow-light dark:shadow-dark transition-all 
       hover:translate-x-boxShadowX
