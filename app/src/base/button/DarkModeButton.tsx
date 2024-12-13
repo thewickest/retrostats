@@ -15,7 +15,7 @@ export default function DarkModeButton() {
   if (!mounted) {
     return (
       <div
-        className="flex text-text cursor-pointer items-center rounded-full
+        className="flex text-text cursor-pointer items-center rounded-base
         border-2 border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack text-sm
         font-base shadow-light dark:shadow-dark transition-all
         h-9 w-9 sm:h-12 sm:w-12"

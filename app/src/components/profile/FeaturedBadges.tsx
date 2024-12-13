@@ -101,7 +101,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
       </div>
       {/* Modal */}
       <Modal active={isModalActive} setActive={setIsModalActive} isBadgeSelected={!!selectedBadge} saveAction={handleSaveAction} deleteAction={handleDeleteAction}>
-        <div className='flex flex-col space-y-4'>
+        <div className='flex flex-col space-y-4 w-full'>
           { selectedBadge && 
             <div className='flex items-center border-border border-2 rounded-base p-2'>
               <div className='flex-none m-1 border-2 border-border rounded-full '>
@@ -113,7 +113,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
               </div>
             </div>
           }
-          <div className='flex flex-wrap border-border border-2 rounded-base p-2'>
+          <div className='flex flex-wrap justify-center border-border border-2 rounded-base p-2'>
           {badges?.map((item, index)=>{
             const isFeatured = (item?.id == selectedBadge?.id || _.find(featBadges, (n) => n?.id == item?.id))
             return (
@@ -123,6 +123,7 @@ const FeaturedBadges = ({ badges, featuredBadges }: {badges?: StrapiBadge[], fea
               </button>
             )
           })}
+          {badges?.length === 0 && (<p>You have no badges</p>)}
           </div>
         </div>
       </Modal>
