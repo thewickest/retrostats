@@ -37,7 +37,7 @@ export default async function Profile() {
         <div className="flex items-start sm:space-x-4 max-sm:flex-wrap max-sm:space-y-4">
           <div className="grow max-sm:w-full">
             <Suspense fallback={<Loading />}>
-              <LeaderboardInfoList user={username}/>
+              <LeaderboardInfoList user={username ?? 'default'}/>
             </Suspense>
           </div>
           <div className="flex-initial w-1/4 max-sm:w-full">
