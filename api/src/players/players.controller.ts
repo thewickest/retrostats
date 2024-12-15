@@ -13,7 +13,7 @@ export class PlayersController {
   }
 
   @Get()
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   findOneByEmail(@Query('email') email: string) {
     return this.playersService.findOneByEmail(email);
   }

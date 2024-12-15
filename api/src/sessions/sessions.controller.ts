@@ -26,18 +26,23 @@ export class SessionsController {
     return this.sessionsService.findAll();
   }
 
+  @Get('/game/:slug')
+  findSessionsByGame(@Param('slug') slug: string, @Query() query: any) {
+    return this.sessionsService.findByGame(slug, query);
+  }
+
   @Get('/leaderBoard')
   findLeaderBoard() {
     return this.sessionsService.findLeaderBoard();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.sessionsService.findOne(+id);
+  @Get('/leaderBoard/:username')
+  findLeaderBoardByUsername(@Param('username') username: string) {
+    return this.sessionsService.findLeaderBoardByUsername(username);
   }
 
-  @Get('/game/:slug')
-  findSessionsByGame(@Param('slug') slug: string, @Query() query: any) {
-    return this.sessionsService.findByGame(slug, query);
+  @Get(':id')
+  findOne(@Param('id') id: number) {
+    return this.sessionsService.findOne(id);
   }
 }

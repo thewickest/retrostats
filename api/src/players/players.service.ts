@@ -2,6 +2,8 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { StrapiService } from 'src/strapi/strapi.service';
+import { StrapiResponse } from 'strapi-sdk-js';
+import { StrapiPlayerDTO } from './dto/strapi-player.dto';
 
 @Injectable()
 export class PlayersService {
@@ -29,7 +31,7 @@ export class PlayersService {
     }
   }
 
-  async findOneByEmail(email: string) {
+  async findOneByEmail(email: string): Promise<StrapiResponse<StrapiPlayerDTO> | {}>{
     try {
       const params = {
         filters: {
@@ -52,7 +54,7 @@ export class PlayersService {
         }
       }
       const users = await this.strapiService.players.findAll(params)
-
+      
 
       return users ? users : {}
     } catch (error) {
