@@ -1,4 +1,4 @@
-export class StrapiPlayerDTO {
+export class StrapiPlayerDto {
   id: number
   attributes: {
     username: string,

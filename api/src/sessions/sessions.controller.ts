@@ -10,11 +10,13 @@ import {
 import { SessionsService } from './sessions.service';
 import { CreateSessionDto } from './dto/create-session.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('sessions')
 export class SessionsController {
   constructor(private readonly sessionsService: SessionsService) {}
 
+  @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   @Post()
   create(@Body() createSessionDto: CreateSessionDto) {
@@ -41,8 +43,8 @@ export class SessionsController {
     return this.sessionsService.findLeaderBoardByUsername(username);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: number) {
-    return this.sessionsService.findOne(id);
-  }
+  // @Get(':id')
+  // findOne(@Param('id') id: number) {
+  //   return this.sessionsService.findOne(id);
+  // }
 }
