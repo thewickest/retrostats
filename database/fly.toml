@@ -1,4 +1,4 @@
-# fly.toml app configuration file generated for retrostats-database on 2024-10-02T13:32:03+02:00
+# fly.toml app configuration file generated for retrostats-database on 2025-01-14T12:05:50+01:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
@@ -11,6 +11,8 @@ primary_region = 'mad'
 
 [env]
   MYSQL_DATABASE = 'retrostats'
+  MYSQL_PASSWORD = 'retrostats'
+  MYSQL_ROOT_PASSWORD = 'retrostats'
   MYSQL_USER = 'retrostats'
 
 [processes]
