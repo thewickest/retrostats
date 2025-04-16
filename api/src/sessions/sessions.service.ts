@@ -1,31 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { CreateSessionDto } from './dto/create-session.dto';
-// import { UpdateSessionDto } from './dto/update-session.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { SessionDto } from './dto/session.dto';
 import { StrapiService } from 'src/strapi/strapi.service';
 import { groupBy, maxBy } from 'lodash';
-
-export interface StrapiResponse {
-  data: SessionDto[]
-  meta: {
-    pagination: {
-      page: number,
-      pageSize: number,
-      total: number,
-      pageCount: number
-    }
-  }
-}
-export interface StrapiParams {
-  sort?: string | Array<string>
-  pagination?: any
-  filters?: Record<string, unknown>
-  publicationState?: "live" | "preview"
-  locale?: string
-  fields?: Array<string>
-  populate?: string | Array<string> | Record<string, unknown>
-}
+import { StrapiResponse } from 'strapi-sdk-js';
 
 @Injectable()
 export class SessionsService {
@@ -115,7 +94,7 @@ export class SessionsService {
   async findByGame(
     slug: string,
     query: any,
-  ): Promise<StrapiResponse> {
+  ): Promise<StrapiResponse<SessionDto>> {
 
     const filters = {
       game: {
@@ -127,24 +106,17 @@ export class SessionsService {
 
     /**Order by Score to get first the position */
     const sessionsOrdered = await this.strapi.sessions.findAll({
-      params: {
-        filters,
-        pagination: {
-          page: 1,
-          pageSize: 100
-        },
-        sort: ['score:desc','id:asc'],
-        fields: ['id']
-      }
+      filters,
+      pagination: {
+        page: 1,
+        pageSize: 100
+      },
+      sort: ['score:desc','id:asc'],
+      fields: ['id']
     });
 
     /**Get current query */
-    const sessions = await this.strapi.sessions.findAll({
-      params: {
-        filters,
-        ...query,
-      }
-    });
+    const sessions = await this.strapi.sessions.findAll({ filters, ...query});
 
     /**Map the position from the ordered items to the current query */
     const data = sessions?.data.map(item => {

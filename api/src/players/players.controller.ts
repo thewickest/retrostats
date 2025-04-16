@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Query, UseGuards } from '@nestjs/common';
 import { PlayersService } from './players.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
@@ -10,5 +10,11 @@ export class PlayersController {
   @UseGuards(JwtAuthGuard)
   findOne(@Param('nfc') nfc: string) {
     return this.playersService.findOne(nfc);
+  }
+
+  @Get()
+  @UseGuards(JwtAuthGuard)
+  findOneByEmail(@Query('email') email: string) {
+    return this.playersService.findOneByEmail(email);
   }
 }

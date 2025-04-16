@@ -8,7 +8,7 @@ export class PagesService {
   private httpService = new HttpService();
   async findOne(slug: string) {
     const { data } = await firstValueFrom(
-      this.httpService.get(`${process.env.STRAPI_URL}${slug}`).pipe(
+      this.httpService.get(`${process.env.STRAPI_URL}/api/${slug}`).pipe(
         catchError((error: AxiosError) => {
           console.log(error);
           throw 'An error happened!';
