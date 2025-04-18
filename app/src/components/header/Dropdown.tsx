@@ -1,18 +1,21 @@
-import { LuChevronDown } from "react-icons/lu";
+'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
 
 export default function Dropdown({
   items,
+  children,
+  position = 'right',
   extraItems,
-  text,
 }: {
   items: { name: string; link: string }[]
-  extraItems: { name: string; link: string, icon: any }[]
-  text: string
+  children: any
+  position?: 'left' | 'right'
+  extraItems?: { name: string; link: string, icon: any }[]
 }) {
   const [isActiveDropdown, setIsActiveDropdown] = useState(false)
+  const pos =  position === 'right' ? 'left-0' : 'right-0'
 
   return (
     <div
@@ -28,27 +31,16 @@ export default function Dropdown({
         onClick={() => {
           setIsActiveDropdown(!isActiveDropdown)
         }}
-        className="flex text-text cursor-pointer items-center rounded-base
-        border-2 border-border dark:border-darkBorder bg-white dark:bg-secondaryBlack text-sm
-        font-base shadow-light dark:shadow-dark transition-all
-        hover:translate-x-boxShadowX hover:translate-y-boxShadowY
-        hover:shadow-none dark:hover:shadow-none h-9 w-9 sm:h-12 sm:w-12"
+        className="flex text-text cursor-pointer items-center"
       >
-        <div className="mx-auto flex items-center">
-          {text}
-          <LuChevronDown
-            className={
-              'h-4 w-4 sm:h-6 sm:w-6 transition-transform group-data-[state=open]:rotate-180 group-data-[state=closed]:rotate-0 ease-in-out dark:text-darkText'
-            }
-          />
-        </div>
+        {children}
       </button>
       <div
         role="listbox"
-        className="absolute left-0 w-[160px] group-data-[state=open]:top-12 sm:group-data-[state=open]:top-16
+        className={`absolute ${pos} w-[160px] group-data-[state=open]:top-12 sm:group-data-[state=open]:top-16
         group-data-[state=open]:opacity-100 group-data-[state=closed]:invisible
         group-data-[state=closed]:top-[50px] group-data-[state=closed]:opacity-0
-        group-data-[state=open]:visible text-center font-base transition-all"
+        group-data-[state=open]:visible text-center font-base transition-all`}
       >
         {items.map((item, index) => {
           return (
@@ -60,7 +52,7 @@ export default function Dropdown({
             </Link>
           )
         })}
-        <hr className="mb-1 h-1 border-t-0 border-black rounded-sm bg-black" />
+        {extraItems && <hr className="mb-1 h-1 border-t-0 border-black rounded-sm bg-black" />}
         {extraItems && extraItems.map((item, index) => {
           return (
             <Link key={`${index}-extra`} href={item.link} target="_blank"

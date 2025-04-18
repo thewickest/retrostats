@@ -1,3 +1,5 @@
+'use client'
+
 import { LuGithub } from "react-icons/lu";
 
 export default function GithubButton() {

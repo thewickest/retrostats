@@ -22,7 +22,7 @@ export abstract class HttpStrapiClient {
     return await this.strapiHttpService
       .findOne(this.pluralName, id)
       .catch((error: AxiosError) => {
-          console.log(error.response.data);
+          console.log(error);
           throw 'An error happened!';
         });
   }

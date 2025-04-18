@@ -1,7 +1,7 @@
 import { Metadata } from "next"
 import '../index.css'
 import Header from "src/components/header/Header"
-import { ThemeProvider } from "next-themes"
+import Providers from "src/components/providers/providers"
 
 export const metadata: Metadata = {
     title: 'RetroStats',
@@ -18,7 +18,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
         <body>
           <div id="modal"></div>
-          <ThemeProvider attribute="class">
+          <Providers>
             <Header />
             <div id="root">
               <div className="mt-[76px] dark:bg-darkBg bg-bg text-text dark:text-darkText">
@@ -27,7 +27,7 @@ export default function RootLayout({
                 </div>
               </div>
             </div>
-          </ThemeProvider>
+          </Providers>
         </body>
       </html>
       

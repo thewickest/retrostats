@@ -9,9 +9,13 @@ export interface StrapiParams {
   pagination?: any
 }
 
-export default async function useApi(route: string, params?: any) {
-  const query = qs.stringify(params)
-
+export default async function useApi(route: string, params?: any): Promise<any | null> {
+  const query = qs.stringify(params) 
+  
   const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}${route}?${query}`)
-  return await res.json()
+  if(res.ok) {
+    return res.json()
+  } else {
+    return null
+  }
 }

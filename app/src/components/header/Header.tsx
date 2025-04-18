@@ -1,11 +1,10 @@
-'use client'
-
 import Link from 'next/link'
 import Dropdown from "./Dropdown";
 import DarkModeButton from "src/base/button/DarkModeButton";
 import { LuCrown, LuGithub } from "react-icons/lu";
 import GithubButton from "src/base/button/GithubButton";
 import LoginButton from 'src/base/button/LoginButton';
+import DropDownButton from 'src/base/button/DropDownButton';
 
 export default function Header () {
 
@@ -23,7 +22,9 @@ export default function Header () {
         <div className="mx-auto flex w-[1300px] text-text dark:text-darkText max-w-full items-center
           justify-center md:grid md:grid-cols-3">
           <div className="md:hidden fixed top-4 left-4">
-            <Dropdown text={''} items={items} extraItems={extraItems}></Dropdown>
+            <Dropdown position={'right'} items={items} extraItems={extraItems}>
+              <DropDownButton />
+            </Dropdown>
           </div>
           <div className="flex justify-center max-md:grow">
             <Link className="text-4xl font-heading max-md:text-xl" href="/">RETROSTATS</Link>
@@ -36,11 +37,11 @@ export default function Header () {
             </Link>
           </div>
           <div className="flex items-center md:justify-end max-md:fixed max-md:top-4 max-md:right-4 gap-2">
-              <LoginButton/>
-              <DarkModeButton/>
               <div className="max-md:hidden">
                 <GithubButton/>
               </div>
+              <DarkModeButton/>
+              <LoginButton/>
           </div>
         </div>
       </nav>

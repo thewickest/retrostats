@@ -3,8 +3,9 @@ import Link from 'next/link'
 import LeaderboardInfoCard from "./LeaderboardInfoCard";
 import useApi from "src/lib/hooks/useApi";
 
-export default async function LeaderboardInfoList() {
-  const items: any = await useApi('sessions/leaderBoard')
+export default async function LeaderboardInfoList({user}: {user?: string}) {
+  const route = user ? `sessions/leaderBoard/${user}` :'sessions/leaderBoard'
+  const items: any = await useApi(route)
 
   return (
     <>
@@ -25,6 +26,11 @@ export default async function LeaderboardInfoList() {
         }
         </div>
       }
+      { (items?.length === 0 || !items) && (
+        <div className="text-center space-y-3 border-2 border-black rounded-base bg-white dark:bg-secondaryBlack p-5">
+          <p>You have no sessions</p>
+        </div>
+      )}
     </>
   )
 }
